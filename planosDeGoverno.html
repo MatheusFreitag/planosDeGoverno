@@ -25,15 +25,12 @@
       }
 
       canvas{
-        background: white;
-      }
-      .container{
-        padding: 40px 10px;
-        width: 90% !important;
+        background: rgba(251,251,251,1);
+        margin: 50px 0px 50px 0px;
       }
 
-      [type="radio"]:not(:checked) + span, [type="radio"]:checked + span {
-        padding-left: 23px;
+      .container{
+        width: 90%;
       }
 
       label{
@@ -41,13 +38,6 @@
         padding: 7px;
         border-radius: 5px;
         color: gray;
-      }
-      #geral_canvas{
-        min-height: 400px;
-      }
-      #otimo_bom_canvas, #regular_canvas, #ruim_pessimo_canvas{
-        width: 100% !important;
-        display: inline-block;
       }
 
       h1.titulo{
@@ -61,21 +51,32 @@
         color: gray;
       }
 
+      p.comentario{
+        color: gray;
+      }
+
+      p.comentario span{
+        font-size: 30px;
+      }
+
       h2.secao{
         color: #424242;
         font-size: 25px;
         text-align: center;
       }
 
-      h2.nomePresidente{
-        font-size: 40px;
-        color: #424242;
-      }
-
       h3{
         font-size: 18px;
         color: #424242;
         text-align: center;
+        margin-top: 60px;
+      }
+
+      p.nota{
+        background: #eee;
+        padding: 20px;
+        border-left: 5px solid gray;
+        color: #777;
       }
 
       hr{
@@ -83,10 +84,6 @@
         margin: 50px 0px;
       }
 
-      img{
-        height: 250px;
-        width: auto;
-      }
 
       .card.horizontal{
         height: 250px;
@@ -102,64 +99,143 @@
 
     <div id="geral" class="container">
 
-      <h1 class="titulo">2º Turno - Eleições Presidenciais 2018</h1>
-      <p class="descricao">No segundo turno das eleições presidenciais do Brasil em 2018, dois candidatos disputam o maior cargo do poder Executivo no país. Aqui é apresentada a frequência das palavras usadas nos planos de governo de Fernando Haddad (PT-13) e Jair Bolsonaro (PSL-17), bem como os termos mais utilizados pelos candidatos em suas contas pessoais do Twitter após 8 de Outubro de 2018 (Dia seguinte ao 1º turno das eleições de 2018).</p>
+      <h1 class="titulo">Frequência de Palavras - Eleições Presidenciais 2018</h1>
+      <p class="descricao">Com foco no 2º turno das Eleições de 2018, aqui é apresentada a frequência das palavras mais utilizadas nos planos de governo de Fernando Haddad (PT-13) e Jair Bolsonaro (PSL-17), bem como os termos mais utizados nos tweets pessoais de cada candidato.</p>
       <hr>
 
       <h2 class="secao">Planos de Governo</h2>
+
+
+      <h3>Plano de Governo - Geral</h3>
       <p class="descricao">Quais são as palavras mais usadas nos planos de governo dos candidatos?</p>
 
       <div class="row">
-        <div class="col s12 m6 l6">
-          <canvas id="planoDeGoverno_gerais_Haddad"></canvas>
+        <div class="col s12 m12 l6">
+          <canvas height="250" id="planoDeGoverno_gerais_Haddad"></canvas>
         </div>
-        <div class="col s12 m6 l6">
-          <canvas id="planoDeGoverno_gerais_Bolsonaro"></canvas>
-        </div>
-      </div>
-      
-
-      <h3>Quantas vezes alguns termos específicos aparecem nos planos dos candidatos?</h3>
-      <p>Nota: Alguns termos foram "agrupados", como por exemplo, os termos "negro", "negros, "negra" e "negras" são todos representados como "negro" nesta contagem. Assim como "mulheres" e "mulher" são represenatdos por "mulher", "idosos" e  "idoso" como "idoso", "crianças" e criança" como "criança</p>
-
-      <div class="row">
-        <div class="col s12 m6 l6">
-          <canvas id="planoDeGoverno_especificos_Haddad"></canvas>
-        </div>
-        <div class="col s12 m6 l6">
-          <canvas id="planoDeGoverno_especificos_Bolsonaro"></canvas>
+        <div class="col s12 m12 l6">
+          <canvas height="250" id="planoDeGoverno_gerais_Bolsonaro"></canvas>
         </div>
       </div>
 
-      <hr>
 
-      <h2 class="secao">Linha do Tempo</h2>
-      <p class="descricao">Um comparativo de todos os governos ao longo do tempo pela % de pessoas que os classificavam como "Bom ou Ótimo", "Regular", ou "Ruim ou Péssimo"</p>
-      <div class="row">
-        <p style="text-align: center;">
-          <label> <input v-on:click="showGeralBomOtimo" class="with-gap" name="avaliacao" type="radio" checked /> <span>Bom ou Ótimo</span></label>
-          <label> <input v-on:click="showGeralRegular" class="with-gap" name="avaliacao" type="radio" /> <span>Regular</span></label>
-          <label> <input v-on:click="showGeralRuimPessimo" class="with-gap" name="avaliacao" type="radio" /> <span>Ruim ou Péssimo</span></label>
+
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <p class=" comentario">
+          <span>🔎</span> Podemos observar que o plano de Fernando Haddad possui palavras mais genéricas, como "governo", "sistema" e "reforma", enquanto o programa de Jair Bolsonaro possui como palavras mais frequentes "acima", "deus" e "tudo", que compõem o slogan da campanha.
         </p>
       </div>
-      <canvas id="geral_canvas"></canvas>
+    </div>
 
-      <hr>
-      <h2 class="secao">Saldo</h2>
-      <p class="descricao">De forma geral, como performaram os governos ao longo do tempo? Para este cálculo foi usada a fórmula: <br> <u>Saldo = {Bom ou Ótimo} + ({Regular} * 0) - {Ruim ou Péssimo}</u></p>
-      <canvas id="saldo_canvas"></canvas>
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <p class="nota">
+          Nota: O 6º termo mais usado no plano de governo de Jair Bolsonaro é um caractere especial extraído do PDF e que não possuía valor semântico, por tanto ele foi ignorado. As palavras para este candidato então são de 1ª a 5ª mais frequente, seguida da 7ª até a 21ª mais frequente.
+        </p>
+      </div>
+    </div>
+
+
+    <h3>Planos de Governo - Termos Específicos</h3>
+    <p class="descricao">Alguns termos importantes não estão entre as palavras mais utilizadas nos planos de ambos os candidatos. <br>Como estes termos se posicionam então nestes planos?</p>
+
+    <div class="row">
+      <div class="col s12 m12 l6">
+        <canvas height='250' id="planoDeGoverno_especificos_Haddad"></canvas>
+      </div>
+      <div class="col s12 m12 l6">
+        <canvas height='250' id="planoDeGoverno_especificos_Bolsonaro"></canvas>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <p class="nota">
+          <b>Nota:</b> Alguns termos foram "agrupados", como por exemplo, os termos "negro", "negros, "negra" e "negras" são todos representados como "negro" nesta contagem. Assim como "mulheres" e "mulher" são termos representados  por "mulher", "idosos" e  "idoso" como "idoso", "crianças" e criança" como "criança.
+        </p>
+      </div>
+    </div>
+
+
+    <hr>
+
+
+    <h2 class="secao">Posicionamento no Twitter</h2>
+
+    <h3>Twitter - Geral</h3>
+    <p class="descricao">Quais são as palavras mais usadas nas contas pessoais dos candidatos pós 8 de Outubro de 2018? </p>
+
+    <div class="row">
+      <div class="col s12 m12 l6">
+        <canvas height="250" id="twitter_gerais_Haddad"></canvas>
+      </div>
+      <div class="col s12 m12 l6">
+        <canvas height="263" id="twitter_gerais_Bolsonaro"></canvas>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <p class="comentario">
+          <span>🔎</span> É possível ver um direcionamento do discurso para si mesmo e para o oponente por parte de ambos os candidatos.
+        </p>
+      </div>
+    </div>
+
+
+    <h3>Twitter - Termos Específicos</h3>
+    <p class="descricao">Assim como nos Planos de Governo, quão frequente é a menção no Twitter de termos específicos e importantes?</p>
+
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <p class="nota">
+          Aos termos específicos foram adicionados as siglas dos partidos dos candidatos e o username de cada candidato. <br> Os tweets foram coletados de 8 de Outubro a 27 de Outubro de 2018.
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m12 l6">
+        <canvas height='250' id="twitter_especificos_Haddad"></canvas>
+      </div>
+      <div class="col s12 m12 l6">
+        <canvas height='260' id="twitter_especificos_Bolsonaro"></canvas>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <p class="nota">
+          Foram agrupados os termos cognatos da mesma forma que foram na análise dos Planos de Governo.
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <p class="comentario">
+          <span>🔎</span> Os termos específicos não são amplamente usados no Twitter, reforçando a ideia de que o discurso nessa plataforma é mais pessoal e sobre e seus oponentes. Sobre o embate, Fernando Haddad menciona Jair Bolsonaro mas não menciona muito seu partido, o PSL, enquanto Jair Bolsonaro se refere múltiplas vezes ao PT - partido de Haddad - mas não ao oponente em si."
+        </p>
+      </div>
+    </div>
+
+
+
+
 
       <hr>
       <div class="footer">
-        <p>Desenvolvido por <a target="_blank" href="https://matheusfreitag.github.io/">Matheus Freitag</a> utilizando <a target="_blank" href="https://www.chartjs.org/">Chart.js</a>, <a target="_blank" href="https://vuejs.org/">Vue.js</a> e <a target="_blank" href="https://materializecss.com/">Materialize</a>.</p>
-        <p>O tratamento dos dados e visualizações cruas podem ser conferidas <a target="_blank" href="https://github.com/MatheusFreitag/avaliacao_presidencial/blob/master/presidentes.ipynb">aqui</a>, onde foi utilizado <a target="_blank" href="https://pandas.pydata.org/">Pandas</a> e <a target="_blank" href="https://matplotlib.org/">Matplotlib</a>.</p>
-        <p>Fonte para o dataset <a target="_blank" href="https://github.com/gabrielzanlorenssi/presidential_approval">aqui</a>, onde esta análise foi feita de forma parecida em R.</p>
+        <p>Desenvolvido por <a target="_blank" href="https://matheusfreitag.me/">Matheus Freitag</a> utilizando <a target="_blank" href="https://www.chartjs.org/">Chart.js</a> e <a href="https://materializecss.com/">Materialize</a>.</p>
+        <p>O tratamento dos dados e visualizações cruas podem ser conferidas <a target="_blank" href="https://github.com/MatheusFreitag/planosDeGoverno/blob/master/Planos_de_Governo.ipynb">aqui</a>, onde foi utilizado <a target="_blank" href="https://pandas.pydata.org/">Pandas</a> e <a target="_blank" href="https://matplotlib.org/">Matplotlib</a>.</p>
+
+        <p>Fontes: Planos de Governo de
+          <a target="_blank" href="http://divulgacandcontas.tse.jus.br/candidaturas/oficial/2018/BR/BR/2022802018/280000629808/proposta_1536702143353.pdf">Fernando Haddad</a> e
+        <a target="_blank" href="http://divulgacandcontas.tse.jus.br/candidaturas/oficial/2018/BR/BR/2022802018/280000614517/proposta_1534284632231.pdf">Jair Bolsonaro</a>
       </div>
 
 
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 
@@ -168,1661 +244,536 @@
     var ctx_planoDeGoverno_gerais_Haddad = document.getElementById('planoDeGoverno_gerais_Haddad').getContext('2d');
     var plot_planoDeGoverno_gerais_Haddad = new Chart(ctx_planoDeGoverno_gerais_Haddad, {
       type: 'bar',
-      data: [
-        { x: '2016-12-25', y: 20 },
-        
-      ]
-      options: options
+      data: {
+        labels:['governo','políticas','nacional','política','haddad','desenvolvimento','brasil','direitos','sistema','além','novo','programa','ser','reforma','vai','investimentos','social','educação','transição','bem'],
+        datasets: [{
+          label: 'Fernando Haddad',
+          data: [215, 126, 125, 109, 103, 96, 86, 82, 78, 75, 74, 63, 63, 61, 54, 54, 52, 52, 51, 50],
+          backgroundColor:["rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)"],
+
+          borderColor:["rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)"],
+          borderWidth:1
+        }]
+      },
+      options: {
+        scaleShowValues: true,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              max: 220
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Frequência'
+            },
+          }],
+          xAxes: [{
+            ticks: {
+              autoSkip: false
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Palavras'
+            },
+          }]
+        },
+        hover: {
+          animationDuration: 0
+        },
+        animation: {
+          duration: 1,
+          onComplete: function() {
+            var chartInstance = this.chart,
+            ctx = chartInstance.ctx;
+            ctx.fillStyle = "rgba(0,0,0,1)";
+            console.log(ctx);
+            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
+
+            this.data.datasets.forEach(function(dataset, i) {
+              var meta = chartInstance.controller.getDatasetMeta(i);
+              meta.data.forEach(function(bar, index) {
+                var data = dataset.data[index];
+                ctx.fillText(data, bar._model.x, bar._model.y - 5);
+              });
+            });
+          }
+        },
+      },
+
+    });
+
+    var ctx_planoDeGoverno_gerais_Bolsonaro = document.getElementById('planoDeGoverno_gerais_Bolsonaro').getContext('2d');
+    var plot_planoDeGoverno_gerais_Bolsonaro = new Chart(ctx_planoDeGoverno_gerais_Bolsonaro, {
+      type: 'bar',
+      data: {
+        labels:['acima', 'brasil', 'todos', 'tudo', 'deus', 'bolsonaro2018', 'ser','economia', 'além', 'governo', 'educação', 'países', 'saúde', 'ter','recursos', 'forma', 'deve', 'maior', 'redução', 'setor'],
+        datasets: [{
+          label: 'Jair Bolsonaro',
+          data: [166, 127,  98,  86,  82,  81,  79,  35,  22,  20,  19,  17,  17, 15,  15,  14,  14,  13,  13,  13],
+          backgroundColor:["rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)"],
+
+          borderColor:["rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)"],
+          borderWidth:1
+        }]
+      },
+      options: {
+        scaleShowValues: true,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              max: 220
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Frequência'
+            },
+          }],
+          xAxes: [{
+            ticks: {
+              autoSkip: false
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Palavras'
+            },
+          }]
+        },
+        hover: {
+          animationDuration: 0
+        },
+        animation: {
+          duration: 1,
+          onComplete: function() {
+            var chartInstance = this.chart,
+            ctx = chartInstance.ctx;
+            ctx.fillStyle = "rgba(0,0,0,1)";
+            console.log(ctx);
+            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
+
+            this.data.datasets.forEach(function(dataset, i) {
+              var meta = chartInstance.controller.getDatasetMeta(i);
+              meta.data.forEach(function(bar, index) {
+                var data = dataset.data[index];
+                ctx.fillText(data, bar._model.x, bar._model.y - 5);
+              });
+            });
+          }
+        },
+      },
+
     });
 
 
-
-
-
-    var chart, c1,c2,c3, ctxsaldo;
-    var app = new Vue({
-      el: '#geral',
+    //Especificos
+    var ctx_planoDeGoverno_especificos_Haddad = document.getElementById('planoDeGoverno_especificos_Haddad').getContext('2d');
+    var plot_planoDeGoverno_especificos_Haddad = new Chart(ctx_planoDeGoverno_especificos_Haddad, {
+      type: 'bar',
       data: {
-        title: 'Bom ou Ótimo',
-        periodoSarney: ['1986-03-01', '1987-03-01', '1987-05-01', '1987-11-01', '1988-03-01', '1988-04-01', '1988-10-01', '1988-12-01', '1989-03-01', '1989-09-01', '1989-11-01', '1990-01-01', '1990-03-01'],
-        periodoCollor: ['1990-03-01', '1990-06-01', '1990-09-01', '1991-03-01', '1991-09-01', '1992-03-01', '1992-09-01'],
-        periodoItamar: ['1992-09-02', '1992-12-15', '1993-01-02', '1993-02-03', '1993-03-27', '1993-04-14', '1993-05-26', '1993-06-15', '1993-08-04', '1993-11-10', '1993-12-14', '1994-03-28', '1994-05-02', '1994-08-08', '1994-09-27', '1994-10-19', '1994-12-12'],
-        periodoFHC: ['1995-03-21', '1995-06-20', '1995-09-18', '1995-12-12', '1996-06-24', '1996-09-18', '1996-12-11', '1997-05-05', '1997-06-18', '1997-09-16', '1997-12-15', '1998-03-10', '1998-04-29', '1998-05-27', '1998-06-08', '1998-07-08', '1998-08-12', '1998-09-01', '1998-12-10', '1999-02-03', '1999-06-09', '1999-09-14', '1999-12-13', '2000-05-14', '2000-06-19', '2000-10-09', '2000-12-12', '2001-05-21', '2001-06-25', '2001-09-18', '2001-11-09', '2001-12-12', '2002-02-20', '2002-04-09', '2002-05-12', '2002-05-14', '2002-06-07', '2002-07-04', '2002-08-15', '2002-08-30', '2002-09-09', '2002-09-19', '2002-09-26', '2002-10-11', '2002-10-18', '2002-12-09'],
-        periodoLula: ['2003-03-31', '2003-06-24', '2003-08-20', '2003-10-28', '2003-12-08', '2004-03-01', '2004-08-17', '2004-12-14', '2005-05-31', '2005-06-16', '2005-07-21', '2005-08-10', '2005-10-20', '2005-12-13', '2006-02-01', '2006-02-20', '2006-04-06', '2006-05-16', '2006-05-23', '2006-06-17', '2006-08-07', '2006-08-21', '2006-08-29', '2006-09-04', '2006-09-11', '2006-09-18', '2006-09-22', '2006-09-27', '2006-10-06', '2006-10-10', '2006-10-16', '2006-10-23', '2006-12-13', '2007-03-19', '2007-08-01', '2007-11-26', '2008-03-25', '2008-09-08', '2008-11-25', '2009-03-16', '2009-05-26', '2009-08-11', '2009-12-14', '2010-02-24', '2010-03-25', '2010-04-15', '2010-05-20', '2010-07-20', '2010-08-09', '2010-08-23', '2010-09-13', '2010-09-21', '2010-10-08', '2010-10-14', '2010-10-21', '2010-10-26', '2010-11-17'],
-        periodoDilma: ['2011-03-15', '2011-06-09', '2011-08-02', '2012-01-18', '2012-04-18', '2012-08-09', '2012-12-13', '2013-03-03', '2013-06-07', '2013-06-28', '2013-08-09', '2013-10-11', '2013-11-28', '2014-02-19', '2014-04-02', '2014-05-07', '2014-06-03', '2014-07-01', '2014-07-15', '2014-08-14', '2014-08-28', '2014-09-01', '2014-09-08', '2014-09-17', '2014-09-25', '2014-09-29', '2014-10-01', '2014-10-08', '2014-10-14', '2014-10-20', '2014-10-21', '2014-12-02', '2015-02-05', '2015-03-16', '2015-04-09', '2015-06-17', '2015-08-04', '2015-11-25', '2015-12-16', '2016-02-24', '2016-03-17', '2016-04-07'],
-        periodoTemer: ['2016-06-15', '2016-12-07', '2017-04-27', '2017-06-21', '2017-09-28', '2017-11-30', '2018-01-29'],
-        conteudoCard: "",
-        fotoPresidente: "",
-        presidente: "",
+        labels:['educação', 'saúde', 'segurança', 'cultura', 'emprego', 'previdência', 'idoso', 'mulher', 'lgbti+', 'criança', 'negro', 'acessibilidade', 'democracia', 'infraestrutura'],
+        datasets: [{
+          label: 'Fernando Haddad',
+          data: [52, 29, 41, 45, 17,  3,  3, 21,  8, 13, 14,  4, 18, 32],
+          backgroundColor:["rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)"],
 
+          borderColor:["rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)"],
+          borderWidth:1
+        }]
       },
-      methods: {
-        showGeralBomOtimo: function(){
-          if(chart) chart.destroy();
-          var chart_bom_otimo = document.getElementById('geral_canvas').getContext('2d');
-          var periodo = ['1986-03-01', '1987-03-01',
-               '1987-05-01', '1987-11-01',
-               '1988-03-01', '1988-04-01',
-               '1988-10-01', '1988-12-01',
-               '1989-03-01', '1989-09-01',
-               '1989-11-01', '1990-01-01',
-               '1990-03-01', '1990-06-01',
-               '1990-09-01', '1991-03-01',
-               '1991-09-01', '1992-03-01',
-               '1992-09-01', '1992-09-02',
-               '1992-12-15', '1993-01-02',
-               '1993-02-03', '1993-03-27',
-               '1993-04-14', '1993-05-26',
-               '1993-06-15', '1993-08-04',
-               '1993-11-10', '1993-12-14',
-               '1994-03-28', '1994-05-02',
-               '1994-08-08', '1994-09-27',
-               '1994-10-19', '1994-12-12',
-               '1995-03-21', '1995-06-20',
-               '1995-09-18', '1995-12-12',
-               '1996-06-24', '1996-09-18',
-               '1996-12-11', '1997-05-05',
-               '1997-06-18', '1997-09-16',
-               '1997-12-15', '1998-03-10',
-               '1998-04-29', '1998-05-27',
-               '1998-06-08', '1998-07-08',
-               '1998-08-12', '1998-09-01',
-               '1998-12-10', '1999-02-03',
-               '1999-06-09', '1999-09-14',
-               '1999-12-13', '2000-05-14',
-               '2000-06-19', '2000-10-09',
-               '2000-12-12', '2001-05-21',
-               '2001-06-25', '2001-09-18',
-               '2001-11-09', '2001-12-12',
-               '2002-02-20', '2002-04-09',
-               '2002-05-12', '2002-05-14',
-               '2002-06-07', '2002-07-04',
-               '2002-08-15', '2002-08-30',
-               '2002-09-09', '2002-09-19',
-               '2002-09-26', '2002-10-11',
-               '2002-10-18', '2002-12-09',
-               '2003-03-31', '2003-06-24',
-               '2003-08-20', '2003-10-28',
-               '2003-12-08', '2004-03-01',
-               '2004-08-17', '2004-12-14',
-               '2005-05-31', '2005-06-16',
-               '2005-07-21', '2005-08-10',
-               '2005-10-20', '2005-12-13',
-               '2006-02-01', '2006-02-20',
-               '2006-04-06', '2006-05-16',
-               '2006-05-23', '2006-06-17',
-               '2006-08-07', '2006-08-21',
-               '2006-08-29', '2006-09-04',
-               '2006-09-11', '2006-09-18',
-               '2006-09-22', '2006-09-27',
-               '2006-10-06', '2006-10-10',
-               '2006-10-16', '2006-10-23',
-               '2006-12-13', '2007-03-19',
-               '2007-08-01', '2007-11-26',
-               '2008-03-25', '2008-09-08',
-               '2008-11-25', '2009-03-16',
-               '2009-05-26', '2009-08-11',
-               '2009-12-14', '2010-02-24',
-               '2010-03-25', '2010-04-15',
-               '2010-05-20', '2010-07-20',
-               '2010-08-09', '2010-08-23',
-               '2010-09-13', '2010-09-21',
-               '2010-10-08', '2010-10-14',
-               '2010-10-21', '2010-10-26',
-               '2010-11-17', '2011-03-15',
-               '2011-06-09', '2011-08-02',
-               '2012-01-18', '2012-04-18',
-               '2012-08-09', '2012-12-13',
-               '2013-03-03', '2013-06-07',
-               '2013-06-28', '2013-08-09',
-               '2013-10-11', '2013-11-28',
-               '2014-02-19', '2014-04-02',
-               '2014-05-07', '2014-06-03',
-               '2014-07-01', '2014-07-15',
-               '2014-08-14', '2014-08-28',
-               '2014-09-01', '2014-09-08',
-               '2014-09-17', '2014-09-25',
-               '2014-09-29', '2014-10-01',
-               '2014-10-08', '2014-10-14',
-               '2014-10-20', '2014-10-21',
-               '2014-12-02', '2015-02-05',
-               '2015-03-16', '2015-04-09',
-               '2015-06-17', '2015-08-04',
-               '2015-11-25', '2015-12-16',
-               '2016-02-24', '2016-03-17',
-               '2016-04-07', '2016-06-15',
-               '2016-12-07', '2017-04-27',
-               '2017-06-21', '2017-09-28',
-               '2017-11-30', '2018-01-29'
-              ]
-
-          var bomOtimo_sarney = [71, 33,  9, 11, 10, 10,  7,  8,  7,  5,  9,  7,  9];
-          var bomOtimo_collor = [71, 36, 34, 23, 18, 15,  9];
-          var bomOtimo_itamar = [18, 34, 36, 24, 21, 17, 19, 17, 15, 12, 18, 15, 16, 37, 32, 40, 41];
-          var bomOtimo_fhc = [39, 40, 42, 41, 30, 43, 47, 42, 39, 43, 37, 38, 35, 31, 31, 38, 39, 43, 35, 21, 16, 13, 16, 18, 19, 23, 24, 26, 19, 22, 24, 24, 31, 28, 29, 27, 31, 31, 27, 26, 26, 23, 23, 23, 26, 26];
-          var bomOtimo_lula = [43, 42, 45, 42, 42, 38, 35, 45, 35, 36, 35, 31, 28, 28, 36, 37, 37, 38, 39, 38, 45, 52, 48, 48, 46, 48, 46, 47, 49, 49, 51, 53, 52, 48, 48, 50, 55, 64, 70, 65, 69, 67, 72, 73, 76, 73, 76, 77, 77, 79, 78, 78, 78, 81, 82, 83, 83];
-          var bomOtimo_dilma = [47, 49, 48, 59, 64, 62, 62, 65, 57, 30, 36, 38, 41, 41, 36, 35, 33, 35, 32, 38, 35, 36, 36, 37, 37, 39, 39, 39, 40, 42, 42, 42, 23, 13, 13, 10,  8, 10, 12, 11, 10, 13];
-          var bomOtimo_temer = [14, 10,  9,  7,  5,  5,  6];
-
-
-          chart = new Chart(chart_bom_otimo, {
-            // The type of chart we want to create
-            type: 'line',
-
-            // The data for our dataset
-            data: {
-                xLabels: periodo,
-                yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-                datasets: [
-                  {
-                    label: "SARNEY",
-                    borderColor: '#FF9933',
-                    data: bomOtimo_sarney
-                  },
-                  {
-                    label: "COLLOR",
-                    borderColor: '#99004C',
-                    data: [NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(bomOtimo_collor)
-                  },
-                  {
-                    label: "ITAMAR",
-                    borderColor: '#999900',
-                    data: [NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(bomOtimo_itamar)
-                  },
-                  {
-                    label: "FHC",
-                    borderColor: '#FF3399',
-                    data: [NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(bomOtimo_fhc)
-                  },
-                  {
-                    label: "LULA",
-                    borderColor: '#6600CC',
-                    data: [NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(bomOtimo_lula)
-                  },
-                  {
-                    label: "DILMA",
-                    borderColor: '#FF3333',
-                    data: [ NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(bomOtimo_dilma)
-
-                  },
-                  {
-                    label: "TEMER",
-                    borderColor: '#33FFFF',
-                    data: [ NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(bomOtimo_temer)
-                  }
-                ]
+      options: {
+        scaleShowValues: true,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              max: 60
             },
-
-            // Configuration options go here
-            options: {
-            title: {
+            scaleLabel: {
               display: true,
-              text: "Índice de Avaliação do Governo como Bom ou Ótimo"
+              labelString: 'Frequência'
             },
-            scales: {
-              yAxes: [{
-                scaleLabel: {
-                  display: true,
-                  labelString: '% de pessoas que avaliaram o governo como Bom ou Ótimo'
-                },
-                ticks: {
-                    beginAtZero: true,   // minimum value will be 0.
-                    suggestedMax: 100
-                }
-              }],
-              xAxes: [{
-                scaleLabel: {
-                  display: true,
-                  labelString: 'Período'
-                }
-              }]
+          }],
+          xAxes: [{
+            ticks: {
+              autoSkip: false
             },
-            tooltips: {
-              enabled: true,
-              callbacks : { // HERE YOU CUSTOMIZE THE LABELS
-                  title : function() {
-                      return 'Avaliação';
-                  },
-                  label : function(tooltipItem, data) {
-                      return data.datasets[tooltipItem.datasetIndex].label + ': ' + tooltipItem.yLabel + "%";
-                  },
-                  afterLabel: function(tooltipItem, data) {
-                    return "Coletado em: " + periodo[tooltipItem.index];
-                  }
-              }
-
-            },
-
-          }
-          });
-          this.title = "Bom ou Ótimo"
-        },
-
-        showGeralRegular: function(){
-          if(chart) chart.destroy();
-          var chart_regular = document.getElementById('geral_canvas').getContext('2d');
-          var periodo = ['1986-03-01', '1987-03-01',
-               '1987-05-01', '1987-11-01',
-               '1988-03-01', '1988-04-01',
-               '1988-10-01', '1988-12-01',
-               '1989-03-01', '1989-09-01',
-               '1989-11-01', '1990-01-01',
-               '1990-03-01', '1990-06-01',
-               '1990-09-01', '1991-03-01',
-               '1991-09-01', '1992-03-01',
-               '1992-09-01', '1992-09-02',
-               '1992-12-15', '1993-01-02',
-               '1993-02-03', '1993-03-27',
-               '1993-04-14', '1993-05-26',
-               '1993-06-15', '1993-08-04',
-               '1993-11-10', '1993-12-14',
-               '1994-03-28', '1994-05-02',
-               '1994-08-08', '1994-09-27',
-               '1994-10-19', '1994-12-12',
-               '1995-03-21', '1995-06-20',
-               '1995-09-18', '1995-12-12',
-               '1996-06-24', '1996-09-18',
-               '1996-12-11', '1997-05-05',
-               '1997-06-18', '1997-09-16',
-               '1997-12-15', '1998-03-10',
-               '1998-04-29', '1998-05-27',
-               '1998-06-08', '1998-07-08',
-               '1998-08-12', '1998-09-01',
-               '1998-12-10', '1999-02-03',
-               '1999-06-09', '1999-09-14',
-               '1999-12-13', '2000-05-14',
-               '2000-06-19', '2000-10-09',
-               '2000-12-12', '2001-05-21',
-               '2001-06-25', '2001-09-18',
-               '2001-11-09', '2001-12-12',
-               '2002-02-20', '2002-04-09',
-               '2002-05-12', '2002-05-14',
-               '2002-06-07', '2002-07-04',
-               '2002-08-15', '2002-08-30',
-               '2002-09-09', '2002-09-19',
-               '2002-09-26', '2002-10-11',
-               '2002-10-18', '2002-12-09',
-               '2003-03-31', '2003-06-24',
-               '2003-08-20', '2003-10-28',
-               '2003-12-08', '2004-03-01',
-               '2004-08-17', '2004-12-14',
-               '2005-05-31', '2005-06-16',
-               '2005-07-21', '2005-08-10',
-               '2005-10-20', '2005-12-13',
-               '2006-02-01', '2006-02-20',
-               '2006-04-06', '2006-05-16',
-               '2006-05-23', '2006-06-17',
-               '2006-08-07', '2006-08-21',
-               '2006-08-29', '2006-09-04',
-               '2006-09-11', '2006-09-18',
-               '2006-09-22', '2006-09-27',
-               '2006-10-06', '2006-10-10',
-               '2006-10-16', '2006-10-23',
-               '2006-12-13', '2007-03-19',
-               '2007-08-01', '2007-11-26',
-               '2008-03-25', '2008-09-08',
-               '2008-11-25', '2009-03-16',
-               '2009-05-26', '2009-08-11',
-               '2009-12-14', '2010-02-24',
-               '2010-03-25', '2010-04-15',
-               '2010-05-20', '2010-07-20',
-               '2010-08-09', '2010-08-23',
-               '2010-09-13', '2010-09-21',
-               '2010-10-08', '2010-10-14',
-               '2010-10-21', '2010-10-26',
-               '2010-11-17', '2011-03-15',
-               '2011-06-09', '2011-08-02',
-               '2012-01-18', '2012-04-18',
-               '2012-08-09', '2012-12-13',
-               '2013-03-03', '2013-06-07',
-               '2013-06-28', '2013-08-09',
-               '2013-10-11', '2013-11-28',
-               '2014-02-19', '2014-04-02',
-               '2014-05-07', '2014-06-03',
-               '2014-07-01', '2014-07-15',
-               '2014-08-14', '2014-08-28',
-               '2014-09-01', '2014-09-08',
-               '2014-09-17', '2014-09-25',
-               '2014-09-29', '2014-10-01',
-               '2014-10-08', '2014-10-14',
-               '2014-10-20', '2014-10-21',
-               '2014-12-02', '2015-02-05',
-               '2015-03-16', '2015-04-09',
-               '2015-06-17', '2015-08-04',
-               '2015-11-25', '2015-12-16',
-               '2016-02-24', '2016-03-17',
-               '2016-04-07', '2016-06-15',
-               '2016-12-07', '2017-04-27',
-               '2017-06-21', '2017-09-28',
-               '2017-11-30', '2018-01-29'
-              ]
-
-          var regular_sarney = [ NaN,  NaN, 35, 29, 23,  NaN, 24, 25, 28, 24,  NaN, 27, 34]
-          var regular_collor = [18, 43, 43, 40, 39, 35, 21]
-          var regular_itamar = [40, 45, 44, 51, 54, 49, 50, 52, 48, 43, 45, 45, 43, 46, 49, 46, 48]
-          var regular_fhc = [40, 40, 39, 40, 41, 38, 38, 38, 42, 41, 40, 39, 41, 43, 41, 41, 40, 37, 37, 39, 38, 27, 36, 37, 38, 38, 39, 42, 38, 40, 38, 40, 38, 41, 41, 41, 40, 40, 40, 39, 36, 40, 39, 42, 38, 36]
-          var regular_lula =[40, 43, 42, 44, 41, 43, 45, 40, 45, 44, 40, 41, 42, 41, 39, 39, 38, 38, 37, 40, 36, 31, 36, 33, 35, 34, 34, 34, 33, 33, 33, 31, 34, 37, 36, 35, 33, 28, 23, 27, 24, 25, 21, 20, 20, 22, 19, 19, 18, 17, 18, 17, 18, 15, 14, 13, 13]
-          var regular_dilma = [34, 38, 39, 33, 29, 30, 30, 27, 33, 43, 42, 42, 40, 37, 39, 38, 38, 38, 38, 38, 39, 38, 38, 38, 39, 37, 36, 38, 38, 37, 37, 33, 33, 24, 27, 24, 20, 22, 22, 25, 21, 24]
-          var regular_temer = [31, 34, 28, 23, 20, 23, 22]
-          chart = new Chart(chart_regular, {
-          // The type of chart we want to create
-            type: 'line',
-
-            // The data for our dataset
-            data: {
-                xLabels: periodo,
-                yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-                datasets: [
-                  {
-                    label: "SARNEY",
-                    borderColor: '#FF9933',
-                    data: regular_sarney
-                  },
-                  {
-                    label: "COLLOR",
-                    borderColor: '#99004C',
-                    data: [NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(regular_collor)
-                  },
-                  {
-                    label: "ITAMAR",
-                    borderColor: '#999900',
-                    data: [NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(regular_itamar)
-                  },
-                  {
-                    label: "FHC",
-                    borderColor: '#FF3399',
-                    data: [NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(regular_fhc)
-                  },
-                  {
-                    label: "LULA",
-                    borderColor: '#6600CC',
-                    data: [NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(regular_lula)
-                  },
-                  {
-                    label: "DILMA",
-                    borderColor: '#FF3333',
-                    data: [ NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(regular_dilma)
-
-                  },
-                  {
-                    label: "TEMER",
-                    borderColor: '#33FFFF',
-                    data: [ NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(regular_temer)
-                  }
-                ]
-            },
-
-            // Configuration options go here
-            options: {
-              title: {
-                display: true,
-                text: "Índice de Avaliação do Governo como Regular"
-              },
-              scales: {
-                yAxes: [{
-                  scaleLabel: {
-                    display: true,
-                    labelString: '% de pessoas que avaliaram o governo como Regular',
-                  },
-                  ticks: {
-                      beginAtZero: true,   // minimum value will be 0.
-                      suggestedMax: 100
-                  }
-                }],
-                xAxes: [{
-                  scaleLabel: {
-                    display: true,
-                    labelString: 'Período'
-                  }
-                }]
-              },
-              tooltips: {
-                enabled: true,
-                callbacks : { // HERE YOU CUSTOMIZE THE LABELS
-                    title : function() {
-                        return 'Avaliação';
-                    },
-                    label : function(tooltipItem, data) {
-                        return data.datasets[tooltipItem.datasetIndex].label + ': ' + tooltipItem.yLabel + "%";
-                    },
-                    afterLabel: function(tooltipItem, data) {
-                      return "Coletado em: " + periodo[tooltipItem.index];
-                    }
-                }
-
-              },
-
-            }
-          });
-          this.title = "Regular"
-        },
-
-        showGeralRuimPessimo: function(){
-          if(chart) chart.destroy();
-          var chart_ruim = document.getElementById('geral_canvas').getContext('2d');
-          var periodo = ['1986-03-01', '1987-03-01', '1905-01', '1987-11-01',
-         '1988-03-01', '1988-04-01', '1988-10-01', '1988-12-01', '1989-03-01', '1989-09-01', '1989-11-01', '1990-01-01', '1990-03-01', '1990-06-01', '1990-09-01', '1991-03-01', '1991-09-01', '1992-03-01', '1992-09-01', '1992-09-02', '1992-12-15', '1993-01-02', '1993-02-03', '1993-03-27', '1993-04-14', '1993-05-26', '1993-06-15', '1993-08-04', '1993-11-10', '1993-12-14', '1994-03-28', '1994-05-02', '1994-08-08', '1994-09-27', '1994-10-19', '1994-12-12', '1995-03-21', '1995-06-20', '1995-09-18', '1995-12-12', '1996-06-24', '1996-09-18', '1996-12-11', '1997-05-05', '1997-06-18', '1997-09-16', '1997-12-15', '1998-03-10', '1998-04-29', '1998-05-27', '1998-06-08', '1998-07-08', '1998-08-12', '1998-09-01', '1998-12-10', '1999-02-03', '1999-06-09', '1999-09-14', '1999-12-13', '2000-05-14', '2000-06-19', '2000-10-09', '2000-12-12', '2001-05-21', '2001-06-25', '2001-09-18', '2001-11-09', '2001-12-12', '2002-02-20', '2002-04-09', '2002-05-12', '2002-05-14', '2002-06-07', '2002-07-04', '2002-08-15', '2002-08-30', '2002-09-09', '2002-09-19', '2002-09-26', '2002-10-11', '2002-10-18', '2002-12-09', '2003-03-31', '2003-06-24', '2003-08-20', '2003-10-28', '2003-12-08', '2004-03-01', '2004-08-17', '2004-12-14', '2005-05-31', '2005-06-16', '2005-07-21', '2005-08-10', '2005-10-20', '2005-12-13', '2006-02-01', '2006-02-20', '2006-04-06', '2006-05-16', '2006-05-23', '2006-06-17', '2006-08-07', '2006-08-21', '2006-08-29', '2006-09-04', '2006-09-11', '2006-09-18', '2006-09-22', '2006-09-27', '2006-10-06', '2006-10-10', '2006-10-16', '2006-10-23', '2006-12-13', '2007-03-19', '2007-08-01', '2007-11-26', '2008-03-25', '2008-09-08', '2008-11-25', '2009-03-16', '2009-05-26', '2009-08-11', '2009-12-14', '2010-02-24', '2010-03-25', '2010-04-15', '2010-05-20', '2010-07-20', '2010-08-09', '2010-08-23', '2010-09-13', '2010-09-21', '2010-10-08', '2010-10-14', '2010-10-21', '2010-10-26', '2010-11-17', '2011-03-15', '2011-06-09', '2011-08-02', '2012-01-18', '2012-04-18', '2012-08-09', '2012-12-13', '2013-03-03', '2013-06-07', '2013-06-28', '2013-08-09', '2013-10-11', '2013-11-28', '2014-02-19', '2014-04-02', '2014-05-07', '2014-06-03', '2014-07-01', '2014-07-15', '2014-08-14', '2014-08-28', '2014-09-01', '2014-09-08', '2014-09-17', '2014-09-25', '2014-09-29', '2014-10-01', '2014-10-08', '2014-10-14', '2014-10-20', '2014-10-21', '2014-12-02', '2015-02-05', '2015-03-16', '2015-04-09', '2015-06-17', '2015-08-04', '2015-11-25', '2015-12-16', '2016-02-24', '2016-03-17', '2016-04-07', '2016-06-15', '2016-12-07', '2017-04-27', '2017-06-21', '2017-09-28', '2017-11-30', '2018-01-29']
-
-          var ruimPessimo_sarney = [ 2, 19, 54, 58, 65, 54, 65, 65, 62, 68, 60, 64, 56];
-          var ruimPessimo_collor = [ 4, 19, 20, 34, 41, 48, 68];
-          var ruimPessimo_itamar = [21, 11,  8, 18, 21, 27, 26, 27, 34, 41, 34, 37, 38, 13, 13, 10,  8];
-          var ruimPessimo_fhc = [16, 17, 15, 15, 25, 17, 12, 18, 16, 15, 20, 21, 21, 24, 25, 19, 18, 17, 25, 36, 44, 56, 46, 43, 41, 37, 35, 30, 42, 36, 36, 35, 29, 29, 28, 29, 28, 26, 32, 32, 34, 34, 35, 32, 32, 36];
-          var ruimPessimo_lula = [10, 11, 11, 11, 15, 17, 17, 13, 18, 19, 23, 26, 28, 29, 23, 22, 23,23, 22, 21, 18, 16, 16, 18, 18, 18, 18, 17, 17, 17, 15, 15, 14, 14,15, 14, 11,  8,  7,  8,  6,  8,  6,  5,  4,  5,  5,  4,  4,  4,  4,4,  4,  4,  3,  3,  4];
-          var ruimPessimo_dilma = [ 7, 10, 11,  6,  5,  7,  7,  7,  9, 25, 22, 19, 17, 21, 25, 26, 28,26, 29, 23, 26, 24, 24, 24, 22, 23, 23, 22, 21, 20, 20, 24, 44, 62,60, 65, 71, 67, 65, 64, 69, 63];
-          var ruimPessimo_temer = [42, 51, 61, 69, 73, 71, 70];
-
-          chart = new Chart(chart_ruim, {
-          // The type of chart we want to create
-          type: 'line',
-
-          // The data for our dataset
-          data: {
-              xLabels: periodo,
-              yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-              datasets: [
-                {
-                  label: "SARNEY",
-                  borderColor: '#FF9933',
-                  data: ruimPessimo_sarney
-                },
-                {
-                  label: "COLLOR",
-                  borderColor: '#99004C',
-                  data: [NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(ruimPessimo_collor)
-                },
-                {
-                  label: "ITAMAR",
-                  borderColor: '#999900',
-                  data: [NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(ruimPessimo_itamar)
-                },
-                {
-                  label: "FHC",
-                  borderColor: '#FF3399',
-                  data: [NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(ruimPessimo_fhc)
-                },
-                {
-                  label: "LULA",
-                  borderColor: '#6600CC',
-                  data: [NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(ruimPessimo_lula)
-                },
-                {
-                  label: "DILMA",
-                  borderColor: '#FF3333',
-                  data: [ NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(ruimPessimo_dilma)
-
-                },
-                {
-                  label: "TEMER",
-                  borderColor: '#33FFFF',
-                  data: [ NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(ruimPessimo_temer)
-                }
-              ]
-          },
-
-          // Configuration options go here
-          options: {
-            title: {
+            scaleLabel: {
               display: true,
-              text: "Índice de Avaliação do Governo como Ruim ou Péssimo"
+              labelString: 'Palavras'
             },
-            scales: {
-              yAxes: [{
-                scaleLabel: {
-                  display: true,
-                  labelString: '% de pessoas que avaliaram o governo como Ruim ou Péssimo',
-                },
-                ticks: {
-                    beginAtZero: true,   // minimum value will be 0.
-                    suggestedMax: 100
-                }
-              }],
-              xAxes: [{
-                scaleLabel: {
-                  display: true,
-                  labelString: 'Período'
-                }
-              }]
-            },
-            tooltips: {
-              enabled: true,
-              callbacks : { // HERE YOU CUSTOMIZE THE LABELS
-                  title : function() {
-                      return 'Avaliação';
-                  },
-                  label : function(tooltipItem, data) {
-                      return data.datasets[tooltipItem.datasetIndex].label + ': ' + tooltipItem.yLabel + "%";
-                  },
-                  afterLabel: function(tooltipItem, data) {
-                    return "Coletado em: " + periodo[tooltipItem.index];
-                  }
-              }
-
-            },
-
-          }
-        });
-          this.title = "Ruim ou Péssimo"
+          }]
         },
+        hover: {
+          animationDuration: 0
+        },
+        animation: {
+          duration: 1,
+          onComplete: function() {
+            var chartInstance = this.chart,
+            ctx = chartInstance.ctx;
+            ctx.fillStyle = "rgba(0,0,0,1)";
+            console.log(ctx);
+            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
 
-        showIndividual: function(presidente){
-          var ctx = document.getElementById('otimo_bom_canvas').getContext('2d');
-          var ctx2 = document.getElementById('regular_canvas').getContext('2d');
-          var ctx3 = document.getElementById('ruim_pessimo_canvas').getContext('2d');
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
 
-          switch (presidente) {
-            case 'SARNEY':
-              if(c1) c1.destroy();
-              if(c2) c2.destroy();
-              if(c3) c3.destroy();
-              c1 = new Chart(ctx, {
-                // The type of chart we want to create
-                type: 'line',
-                // The data for our dataset
-                data: {
-                    xLabels: this.periodoSarney,
-                    yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-                    datasets: [
-                      {
-                        label: "SARNEY",
-                        borderColor: '#FF9933',
-                        data: [71, 33,  9, 11, 10, 10,  7,  8,  7,  5,  9,  7,  9]
-                      },
-                    ]
-                },
-                // Configuration options go here
-                options: {
-                  legend: {
-                      display: false
-                  },
-                  responsive: true,
-                  title: {
-                    display: true,
-                    text: "Bom ou Ótimo",
-                    fontSize: 10
-                  },
-                  scales: {
-                    yAxes: [{
-                      scaleLabel: {
-                        display: false
-                      },
-                      ticks: {
-                          beginAtZero: true,   // minimum value will be 0.
-                          fontSize: 5,
-                          suggestedMax: 100,
-                      }
-                    }],
-                    xAxes: [{
-                      display: false,
-                    }],
-                  },
-                },
+            this.data.datasets.forEach(function(dataset, i) {
+              var meta = chartInstance.controller.getDatasetMeta(i);
+              meta.data.forEach(function(bar, index) {
+                var data = dataset.data[index];
+                ctx.fillText(data, bar._model.x, bar._model.y - 5);
               });
-              c2 = new Chart(ctx2, {
-                // The type of chart we want to create
-                type: 'line',
-                // The data for our dataset
-                data: {
-                    xLabels: this.periodoSarney,
-                    yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-                    datasets: [
-                      {
-                        label: "SARNEY",
-                        borderColor: '#FF9933',
-                        data: [ NaN,  NaN, 35, 29, 23,  NaN, 24, 25, 28, 24,  NaN, 27, 34]
-                      },
-                    ]
-                },
-                // Configuration options go here
-                options: {
-                  legend: {
-                      display: false
-                  },
-                  responsive: true,
-                  title: {
-                    display: true,
-                    text: "Regular",
-                    fontSize: 10
-                  },
-                  scales: {
-                    yAxes: [{
-                      scaleLabel: {
-                        display: false,
-                      },
-                      ticks: {
-                          beginAtZero: true,   // minimum value will be 0.
-                          fontSize: 5,
-                          suggestedMax: 100,
-                      }
-                    }],
-                    xAxes: [{
-                      display: false,
-                    }],
-                  },
-                },
-              });
-              c3 = new Chart(ctx3, {
-                // The type of chart we want to create
-                type: 'line',
-                // The data for our dataset
-                data: {
-                    xLabels: this.periodoSarney,
-                    yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-                    datasets: [
-                      {
-                        label: "SARNEY",
-                        borderColor: '#FF9933',
-                        data: [ 2, 19, 54, 58, 65, 54, 65, 65, 62, 68, 60, 64, 56]
-                      },
-                    ]
-                },
-                // Configuration options go here
-                options: {
-                  responsive: true,
-                  legend: {
-                      display: false
-                  },
-                  title: {
-                    display: true,
-                    text: "Ruim ou Péssimo",
-                    fontSize: 10
-                  },
-                  scales: {
-                    yAxes: [{
-                      scaleLabel: {
-                        display: false,
-                      },
-                      ticks: {
-                          beginAtZero: true,   // minimum value will be 0.
-                          fontSize: 5,
-                          suggestedMax: 100,
-                      }
-                    }],
-                    xAxes: [{
-                      display: false,
-                    }],
-                  },
-                },
-              });
-
-              this.conteudoCard = `<h2 class="nomePresidente">José Sarney</h2>
-              <p><b>Sobre:</b></p>
-              <p><i>José Sarney de Araújo Costa</i> é um advogado, político e escritor brasileiro que serviu como o 31.º Presidente do Brasil.</p>
-              <br>
-              <p> <b>Período do Mandato:</b> 1985 à 1990.</p>`,
-              this.fotoPresidente = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Sarney_%28Gerv%C3%A1sio_Pal%C3%A1cio_do_planalto%29.jpg/240px-Sarney_%28Gerv%C3%A1sio_Pal%C3%A1cio_do_planalto%29.jpg"
-              this.presidente = "Sarney"
-            break;
-
-            case 'COLLOR':
-              if(c1) c1.destroy();
-              if(c2) c2.destroy();
-              if(c3) c3.destroy();
-              c1 = new Chart(ctx, {
-                // The type of chart we want to create
-                type: 'line',
-                // The data for our dataset
-                data: {
-                    xLabels: this.periodoCollor,
-                    yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-                    datasets: [
-                      {
-                        label: "COLLOR",
-                        borderColor: '#99004C',
-                        data: [71, 36, 34, 23, 18, 15,  9]
-                      },
-                    ]
-                },
-                // Configuration options go here
-                options: {
-                  legend: {
-                      display: false
-                  },
-                  responsive: true,
-                  title: {
-                    display: true,
-                    text: "Bom ou Ótimo",
-                    fontSize: 10
-                  },
-                  scales: {
-                    yAxes: [{
-                      scaleLabel: {
-                        display: false
-                      },
-                      ticks: {
-                          beginAtZero: true,   // minimum value will be 0.
-                          fontSize: 5,
-                          suggestedMax: 100,
-                      }
-                    }],
-                    xAxes: [{
-                      display: false,
-                    }],
-                  },
-                },
-              });
-              c2 = new Chart(ctx2, {
-                // The type of chart we want to create
-                type: 'line',
-                // The data for our dataset
-                data: {
-                    xLabels: this.periodoCollor,
-                    yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-                    datasets: [
-                      {
-                        label: "COLLOR",
-                        borderColor: '#99004C',
-                        data: [18, 43, 43, 40, 39, 35, 21]
-                      },
-                    ]
-                },
-                // Configuration options go here
-                options: {
-                  legend: {
-                      display: false
-                  },
-                  responsive: true,
-                  title: {
-                    display: true,
-                    text: "Regular",
-                    fontSize: 10
-                  },
-                  scales: {
-                    yAxes: [{
-                      scaleLabel: {
-                        display: false,
-                      },
-                      ticks: {
-                          beginAtZero: true,   // minimum value will be 0.
-                          fontSize: 5,
-                          suggestedMax: 100,
-                      }
-                    }],
-                    xAxes: [{
-                      display: false,
-                    }],
-                  },
-                },
-              });
-              c3 = new Chart(ctx3, {
-                // The type of chart we want to create
-                type: 'line',
-                // The data for our dataset
-                data: {
-                    xLabels: this.periodoCollor,
-                    yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-                    datasets: [
-                      {
-                        label: "COLLOR",
-                        borderColor: '#99004C',
-                        data: [ 4, 19, 20, 34, 41, 48, 68]
-                      },
-                    ]
-                },
-                // Configuration options go here
-                options: {
-                  legend: {
-                      display: false
-                  },
-                  responsive: true,
-                  title: {
-                    display: true,
-                    text: "Ruim ou Péssimo",
-                    fontSize: 10
-                  },
-                  scales: {
-                    yAxes: [{
-                      scaleLabel: {
-                        display: false,
-                      },
-                      ticks: {
-                          beginAtZero: true,   // minimum value will be 0.
-                          fontSize: 5,
-                          suggestedMax: 100,
-                      }
-                    }],
-                    xAxes: [{
-                      display: false,
-                    }],
-                  },
-                },
-              });
-              this.conteudoCard = `<h2 class="nomePresidente">Fernando Collor</h2>
-              <p><b>Sobre:</b></p>
-              <p><i>Fernando Affonso Collor de Mellomais</i>, conhecido como Fernando Collor, é um político brasileiro e foi o 32º Presidente do Brasil.</p>
-              <br>
-              <p><b>Período do Mandato:</b> 1990 à 1992.</p>`,
-              this.fotoPresidente = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Fernando_Collor_1992_B%26W.jpg/250px-Fernando_Collor_1992_B%26W.jpg"
-              this.presidente = "Collor"
-            break;
-
-            case 'ITAMAR':
-              if(c1) c1.destroy();
-              if(c2) c2.destroy();
-              if(c3) c3.destroy();
-              c1 = new Chart(ctx, {
-                // The type of chart we want to create
-                type: 'line',
-                // The data for our dataset
-                data: {
-                    xLabels: this.periodoItamar,
-                    yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-                    datasets: [
-                      {
-                        label: "ITAMAR",
-                        borderColor: '#999900',
-                        data: [18, 34, 36, 24, 21, 17, 19, 17, 15, 12, 18, 15, 16, 37, 32, 40, 41]
-                      },
-                    ]
-                },
-                // Configuration options go here
-                options: {
-                  legend: {
-                      display: false
-                  },
-                  responsive: true,
-                  title: {
-                    display: true,
-                    text: "Bom ou Ótimo",
-                    fontSize: 10
-                  },
-                  scales: {
-                    yAxes: [{
-                      scaleLabel: {
-                        display: false
-                      },
-                      ticks: {
-                          beginAtZero: true,   // minimum value will be 0.
-                          fontSize: 5,
-                          suggestedMax: 100,
-                      }
-                    }],
-                    xAxes: [{
-                      display: false,
-                    }],
-                  },
-                },
-              });
-              c2 = new Chart(ctx2, {
-                // The type of chart we want to create
-                type: 'line',
-                // The data for our dataset
-                data: {
-                    xLabels: this.periodoItamar,
-                    yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-                    datasets: [
-                      {
-                        label: "ITAMAR",
-                        borderColor: '#999900',
-                        data: [40, 45, 44, 51, 54, 49, 50, 52, 48, 43, 45, 45, 43, 46, 49, 46, 48]
-                      },
-                    ]
-                },
-                // Configuration options go here
-                options: {
-                  legend: {
-                      display: false
-                  },
-                  responsive: true,
-                  title: {
-                    display: true,
-                    text: "Regular",
-                    fontSize: 10
-                  },
-                  scales: {
-                    yAxes: [{
-                      scaleLabel: {
-                        display: false,
-                      },
-                      ticks: {
-                          beginAtZero: true,   // minimum value will be 0.
-                          fontSize: 5,
-                          suggestedMax: 100,
-                      }
-                    }],
-                    xAxes: [{
-                      display: false,
-                    }],
-                  },
-                },
-              });
-              c3 = new Chart(ctx3, {
-                // The type of chart we want to create
-                type: 'line',
-                // The data for our dataset
-                data: {
-                    xLabels: this.periodoItamar,
-                    yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-                    datasets: [
-                      {
-                        label: "ITAMAR",
-                        borderColor: '#999900',
-                        data: [21, 11,  8, 18, 21, 27, 26, 27, 34, 41, 34, 37, 38, 13, 13, 10,  8]
-                      },
-                    ]
-                },
-                // Configuration options go here
-                options: {
-                  legend: {
-                      display: false
-                  },
-                  responsive: true,
-                  title: {
-                    display: true,
-                    text: "Ruim ou Péssimo",
-                    fontSize: 10
-                  },
-                  scales: {
-                    yAxes: [{
-                      scaleLabel: {
-                        display: false,
-                      },
-                      ticks: {
-                          beginAtZero: true,   // minimum value will be 0.
-                          fontSize: 5,
-                          suggestedMax: 100,
-                      }
-                    }],
-                    xAxes: [{
-                      display: false,
-                    }],
-                  },
-                },
-              });
-
-              this.conteudoCard = `<h2 class="nomePresidente">Itamar Franco</h2>
-              <p><b>Sobre:</b></p>
-              <p><i>Itamar Augusto Cautiero Franco</i>  foi um político brasileiro e o 33.º presidente da República Federativa do Brasil.</p>
-              <br>
-              <p> <b>Período do Mandato:</b> 1992 à 1995.</p>`,
-              this.fotoPresidente = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Itamar_1992_%28Gurgel_Planalto%29.jpg/220px-Itamar_1992_%28Gurgel_Planalto%29.jpg"
-              this.presidente = "Itamar"
-            break;
-
-            case 'FHC':
-              if(c1) c1.destroy();
-              if(c2) c2.destroy();
-              if(c3) c2.destroy();
-              c1 = new Chart(ctx, {
-                // The type of chart we want to create
-                type: 'line',
-                // The data for our dataset
-                data: {
-                    xLabels: this.periodoFHC,
-                    yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-                    datasets: [
-                      {
-                        label: "FHC",
-                        borderColor: '#FF3399',
-                        data: [39, 40, 42, 41, 30, 43, 47, 42, 39, 43, 37, 38, 35, 31, 31, 38, 39, 43, 35, 21, 16, 13, 16, 18, 19, 23, 24, 26, 19, 22, 24, 24, 31, 28, 29, 27, 31, 31, 27, 26, 26, 23, 23, 23, 26, 26]
-                      },
-                    ]
-                },
-                // Configuration options go here
-                options: {
-                  legend: {
-                      display: false
-                  },
-                  responsive: true,
-                  title: {
-                    display: true,
-                    text: "Bom ou Ótimo",
-                    fontSize: 10
-                  },
-                  scales: {
-                    yAxes: [{
-                      scaleLabel: {
-                        display: false
-                      },
-                      ticks: {
-                          beginAtZero: true,   // minimum value will be 0.
-                          fontSize: 5,
-                          suggestedMax: 100,
-                      }
-                    }],
-                    xAxes: [{
-                      display: false,
-                    }],
-                  },
-                },
-              });
-              c2 = new Chart(ctx2, {
-                // The type of chart we want to create
-                type: 'line',
-                // The data for our dataset
-                data: {
-                    xLabels: this.periodoFHC,
-                    yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-                    datasets: [
-                      {
-                        label: "FHC",
-                        borderColor: '#FF3399',
-                        data: [40, 40, 39, 40, 41, 38, 38, 38, 42, 41, 40, 39, 41,43, 41, 41, 40, 37, 37, 39, 38, 27, 36, 37, 38, 38,39, 42, 38, 40, 38, 40, 38, 41, 41, 41, 40, 40, 40,39, 36, 40, 39, 42, 38, 36]
-                      },
-                    ]
-                },
-                // Configuration options go here
-                options: {
-                  legend: {
-                      display: false
-                  },
-                  responsive: true,
-                  title: {
-                    display: true,
-                    text: "Regular",
-                    fontSize: 10
-                  },
-                  scales: {
-                    yAxes: [{
-                      scaleLabel: {
-                        display: false,
-                      },
-                      ticks: {
-                          beginAtZero: true,   // minimum value will be 0.
-                          fontSize: 5,
-                          suggestedMax: 100,
-                      }
-                    }],
-                    xAxes: [{
-                      display: false,
-                    }],
-                  },
-                },
-              });
-              c3 = new Chart(ctx3, {
-                // The type of chart we want to create
-                type: 'line',
-                // The data for our dataset
-                data: {
-                    xLabels: this.periodoFHC,
-                    yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-                    datasets: [
-                      {
-                        label: "FHC",
-                        borderColor: '#FF3399',
-                        data: [16, 17, 15, 15, 25, 17, 12, 18, 16, 15, 20, 21, 21, 24, 25, 19, 18,17, 25, 36, 44, 56, 46, 43, 41, 37, 35, 30, 42, 36, 36, 35, 29, 29,28, 29, 28, 26, 32, 32, 34, 34, 35, 32, 32, 36]
-                      },
-                    ]
-                },
-                // Configuration options go here
-                options: {
-                  legend: {
-                      display: false
-                  },
-                  responsive: true,
-                  title: {
-                    display: true,
-                    text: "Ruim ou Péssimo",
-                    fontSize: 10
-                  },
-                  scales: {
-                    yAxes: [{
-                      scaleLabel: {
-                        display: false,
-                      },
-                      ticks: {
-                          beginAtZero: true,   // minimum value will be 0.
-                          fontSize: 5,
-                          suggestedMax: 100,
-                      }
-                    }],
-                    xAxes: [{
-                      display: false,
-                    }],
-                  },
-                },
-              });
-
-              this.conteudoCard = `<h2 class="nomePresidente">Fernando Henrique Cardoso</h2>
-              <p><b>Sobre:</b></p>
-              <p><i>Fernando Henrique Cardoso</i>, também conhecido como FHC, é um sociólogo, cientista político, professor universitário, escritor e político brasileiro, sendo o 34.º presidente da República Federativa do Brasil</p>
-              <br>
-              <p> <b>Período do Mandato:</b> 1995 à 2003.</p>`,
-              this.fotoPresidente = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Fernando_Henrique_Cardoso_%281994%29.jpg/250px-Fernando_Henrique_Cardoso_%281994%29.jpg"
-              this.presidente = "FHC"
-            break;
-
-            case 'LULA':
-              if(c1) c1.destroy();
-              if(c2) c2.destroy();
-              if(c3) c3.destroy();
-              c1 = new Chart(ctx, {
-                // The type of chart we want to create
-                type: 'line',
-                // The data for our dataset
-                data: {
-                    xLabels: this.periodoLula,
-                    yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-                    datasets: [
-                      {
-                        label: "LULA",
-                        borderColor: '#6600CC',
-                        data: [43, 42, 45, 42, 42, 38, 35, 45, 35, 36, 35, 31, 28, 28, 36, 37, 37, 38, 39, 38, 45, 52, 48, 48, 46, 48, 46, 47, 49, 49, 51, 53, 52, 48, 48, 50, 55, 64, 70, 65, 69, 67, 72, 73, 76, 73, 76, 77, 77, 79, 78, 78, 78, 81, 82, 83, 83]
-                      },
-                    ]
-                },
-                // Configuration options go here
-                options: {
-                  legend: {
-                      display: false
-                  },
-                  responsive: true,
-                  title: {
-                    display: true,
-                    text: "Bom ou Ótimo",
-                    fontSize: 10
-                  },
-                  scales: {
-                    yAxes: [{
-                      scaleLabel: {
-                        display: false
-                      },
-                      ticks: {
-                          beginAtZero: true,   // minimum value will be 0.
-                          fontSize: 5,
-                          suggestedMax: 100,
-                      }
-                    }],
-                    xAxes: [{
-                      display: false,
-                    }],
-                  },
-                },
-              });
-              c2 = new Chart(ctx2, {
-                // The type of chart we want to create
-                type: 'line',
-                // The data for our dataset
-                data: {
-                    xLabels: this.periodoLula,
-                    yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-                    datasets: [
-                      {
-                        label: "LULA",
-                        borderColor: '#6600CC',
-                        data: [40, 43, 42, 44, 41, 43, 45, 40, 45, 44, 40, 41, 42, 41, 39, 39, 38, 38, 37, 40, 36, 31, 36, 33, 35, 34, 34, 34, 33, 33, 33, 31, 34, 37, 36, 35, 33, 28, 23, 27, 24, 25, 21, 20, 20, 22, 19, 19, 18, 17, 18, 17, 18, 15, 14, 13, 13]
-                      },
-                    ]
-                },
-                // Configuration options go here
-                options: {
-                  legend: {
-                      display: false
-                  },
-                  responsive: true,
-                  title: {
-                    display: true,
-                    text: "Regular",
-                    fontSize: 10
-                  },
-                  scales: {
-                    yAxes: [{
-                      scaleLabel: {
-                        display: false,
-                      },
-                      ticks: {
-                          beginAtZero: true,   // minimum value will be 0.
-                          fontSize: 5,
-                          suggestedMax: 100,
-                      }
-                    }],
-                    xAxes: [{
-                      display: false,
-                    }],
-                  },
-                },
-              });
-              c3 = new Chart(ctx3, {
-                // The type of chart we want to create
-                type: 'line',
-                // The data for our dataset
-                data: {
-                    xLabels: this.periodoLula,
-                    yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-                    datasets: [
-                      {
-                        label: "LULA",
-                        borderColor: '#6600CC',
-                        data: [10, 11, 11, 11, 15, 17, 17, 13, 18, 19, 23, 26, 28, 29, 23, 22, 23, 23, 22, 21, 18, 16, 16, 18, 18, 18, 18, 17, 17, 17, 15, 15, 14, 14, 15, 14, 11,  8,  7,  8,  6,  8,  6,  5,  4,  5,  5,  4,  4,  4,  4, 4,  4,  4,  3,  3,  4]
-                      },
-                    ]
-                },
-                // Configuration options go here
-                options: {
-                  legend: {
-                      display: false
-                  },
-                  responsive: true,
-                  title: {
-                    display: true,
-                    text: "Ruim ou Péssimo",
-                    fontSize: 10
-                  },
-                  scales: {
-                    yAxes: [{
-                      scaleLabel: {
-                        display: false,
-                      },
-                      ticks: {
-                          beginAtZero: true,   // minimum value will be 0.
-                          fontSize: 5,
-                          suggestedMax: 100,
-                      }
-                    }],
-                    xAxes: [{
-                      display: false,
-                    }],
-                  },
-                },
-              });
-
-              this.conteudoCard = `<h2 class="nomePresidente">Luiz Inácio Lula da Silva</h2>
-              <p><b>Sobre:</b></p>
-              <p><i>Luiz Inácio Lula da Silva</i>, nascido Luiz Inácio da Silva e mais conhecido como Lula, é um político, ex-sindicalista e ex-metalúrgico brasileiro, sendo o 35.º presidente do Brasil.</p>
-              <br>
-              <p> <b>Período do Mandato:</b> 2003 à 2011.</p>`,
-              this.fotoPresidente = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Lula_-_foto_oficial05012007.jpg/230px-Lula_-_foto_oficial05012007.jpg"
-              this.presidente = "Lula"
-            break;
-
-            case 'DILMA':
-              if(c1) c1.destroy();
-              if(c2) c2.destroy();
-              if(c3) c3.destroy();
-              c1= new Chart(ctx, {
-                // The type of chart we want to create
-                type: 'line',
-                // The data for our dataset
-                data: {
-                    xLabels: this.periodoDilma,
-                    yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-                    datasets: [
-                      {
-                        label: 'DILMA',
-                        borderColor: '#FF3333',
-                        data: [47, 49, 48, 59, 64, 62, 62, 65, 57, 30, 36, 38, 41, 41, 36, 35, 33, 35, 32, 38, 35, 36, 36, 37, 37, 39, 39, 39, 40, 42, 42, 42, 23, 13, 13, 10,  8, 10, 12, 11, 10, 13]
-                      },
-                    ]
-                },
-                // Configuration options go here
-                options: {
-                  legend: {
-                      display: false
-                  },
-                  responsive: true,
-                  title: {
-                    display: true,
-                    text: "Bom ou Ótimo",
-                    fontSize: 10
-                  },
-                  scales: {
-                    yAxes: [{
-                      scaleLabel: {
-                        display: false,
-                      },
-                      ticks: {
-                          beginAtZero: true,   // minimum value will be 0.
-                          fontSize: 5,
-                          suggestedMax: 100,
-                      }
-                    }],
-                    xAxes: [{
-                      display: false,
-                    }],
-                  },
-                },
-              });
-              c2 = new Chart(ctx2, {
-                // The type of chart we want to create
-                type: 'line',
-                // The data for our dataset
-                data: {
-                    xLabels: this.periodoDilma,
-                    yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-                    datasets: [
-                      {
-                        label: "DILMA",
-                        borderColor: '#FF3333',
-                        data: [34, 38, 39, 33, 29, 30, 30, 27, 33, 43, 42, 42, 40, 37, 39, 38, 38, 38, 38, 38, 39, 38, 38, 38, 39, 37, 36, 38, 38, 37, 37, 33, 33, 24, 27, 24, 20, 22, 22, 25, 21, 24]
-                      },
-                    ]
-                },
-                // Configuration options go here
-                options: {
-                  legend: {
-                      display: false
-                  },
-                  responsive: true,
-                  title: {
-                    display: true,
-                    text: "Regular",
-                    fontSize: 10
-                  },
-                  scales: {
-                    yAxes: [{
-                      scaleLabel: {
-                        display: false,
-                        labelString: '% de pessoas que avaliaram o Governo Sarney como Regular',
-                      },
-                      ticks: {
-                          beginAtZero: true,   // minimum value will be 0.
-                          fontSize: 5,
-                          suggestedMax: 100,
-                      }
-                    }],
-                    xAxes: [{
-                      display: false,
-                    }],
-                  },
-                },
-              });
-              c3 = new Chart(ctx3, {
-                // The type of chart we want to create
-                type: 'line',
-                // The data for our dataset
-                data: {
-                    xLabels: this.periodoDilma,
-                    yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-                    datasets: [
-                      {
-                        label: "DILMA",
-                        borderColor: '#FF3333',
-                        data: [ 7, 10, 11,  6,  5,  7,  7,  7,  9, 25, 22, 19, 17, 21, 25, 26, 28,26, 29, 23, 26, 24, 24, 24, 22, 23, 23, 22, 21, 20, 20, 24, 44, 62,60, 65, 71, 67, 65, 64, 69, 63]
-                      },
-                    ]
-                },
-                // Configuration options go here
-                options: {
-                  legend: {
-                      display: false
-                  },
-                  responsive: true,
-                  title: {
-                    display: true,
-                    text: "Ruim ou Péssimo",
-                    fontSize: 10
-                  },
-                  scales: {
-                    yAxes: [{
-                      scaleLabel: {
-                        display: false,
-                      },
-                      ticks: {
-                          beginAtZero: true,   // minimum value will be 0.
-                          fontSize: 5,
-                          suggestedMax: 100,
-                      }
-                    }],
-                    xAxes: [{
-                      display: false,
-                    }],
-                  },
-                },
-              });
-
-              this.conteudoCard = `<h2 class="nomePresidente">Dilma Rousseff</h2>
-              <p><b>Sobre:</b></p>
-              <p><i>Dilma Vana Rousseff</i> é uma economista e política brasileira, sendo a 36.ª presidente do Brasil e 1ª presidente mulher do país.</p>
-              <br>
-              <p> <b>Período do Mandato:</b> 2011 à 2016.</p>`,
-              this.fotoPresidente = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Dilma_Rousseff_-_foto_oficial_2011-01-09.jpg/235px-Dilma_Rousseff_-_foto_oficial_2011-01-09.jpg"
-              this.presidente = "Dilma"
-            break;
-
-            case 'TEMER':
-              if(c1) c1.destroy();
-              if(c2) c2.destroy();
-              if(c3) c3.destroy();
-              c1= new Chart(ctx, {
-                // The type of chart we want to create
-                type: 'line',
-                // The data for our dataset
-                data: {
-                    xLabels: this.periodoTemer,
-                    yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-                    datasets: [
-                      {
-                        label: 'TEMER',
-                        borderColor: '#33FFFF',
-                        data: [14, 10,  9,  7,  5,  5,  6]
-                      },
-                    ]
-                },
-                // Configuration options go here
-                options: {
-                  legend: {
-                      display: false
-                  },
-                  responsive: true,
-                  title: {
-                    display: true,
-                    text: "Bom ou Ótimo",
-                    fontSize: 10
-                  },
-                  scales: {
-                    yAxes: [{
-                      scaleLabel: {
-                        display: false,
-                      },
-                      ticks: {
-                          beginAtZero: true,   // minimum value will be 0.
-                          fontSize: 5,
-                          suggestedMax: 100,
-                      }
-                    }],
-                    xAxes: [{
-                      display: false,
-                    }],
-                  },
-                },
-              });
-              c2 = new Chart(ctx2, {
-                // The type of chart we want to create
-                type: 'line',
-                // The data for our dataset
-                data: {
-                    xLabels: this.periodoTemer,
-                    yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-                    datasets: [
-                      {
-                        label: "TEMER",
-                        borderColor: '#33FFFF',
-                        data: [31, 34, 28, 23, 20, 23, 22]
-                      },
-                    ]
-                },
-                // Configuration options go here
-                options: {
-                  legend: {
-                      display: false
-                  },
-                  responsive: true,
-                  title: {
-                    display: true,
-                    text: "Regular",
-                    fontSize: 10
-                  },
-                  scales: {
-                    yAxes: [{
-                      scaleLabel: {
-                        display: false,
-                        labelString: '% de pessoas que avaliaram o Governo Sarney como Regular',
-                      },
-                      ticks: {
-                          beginAtZero: true,   // minimum value will be 0.
-                          fontSize: 5,
-                          suggestedMax: 100,
-                      }
-                    }],
-                    xAxes: [{
-                      display: false,
-                    }],
-                  },
-                },
-              });
-              c3 = new Chart(ctx3, {
-                // The type of chart we want to create
-                type: 'line',
-                // The data for our dataset
-                data: {
-                    xLabels: this.periodoTemer,
-                    yLabels: [0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-                    datasets: [
-                      {
-                        label: "TEMER",
-                        borderColor: '#33FFFF',
-                        data: [42, 51, 61, 69, 73, 71, 70]
-                      },
-                    ]
-                },
-                // Configuration options go here
-                options: {
-                  legend: {
-                      display: false
-                  },
-                  responsive: true,
-                  title: {
-                    display: true,
-                    text: "Ruim ou Péssimo",
-                    fontSize: 10
-                  },
-                  scales: {
-                    yAxes: [{
-                      scaleLabel: {
-                        display: false,
-                      },
-                      ticks: {
-                          beginAtZero: true,   // minimum value will be 0.
-                          fontSize: 5,
-                          suggestedMax: 100,
-                      }
-                    }],
-                    xAxes: [{
-                      display: false,
-                    }],
-                  },
-                },
-              });
-              this.conteudoCard = `<h2 class="nomePresidente">Michel Temer</h2>
-              <p><b>Sobre:</b></p>
-              <p><i>Michel Miguel Elias Temer Lulia</i> é um político, advogado e escritor brasileiro, atual presidente da República Federativa do Brasil</p>
-              <br>
-              <p> <b>Período do Mandato:</b> 2016 à atualidade.</p>`,
-              this.fotoPresidente = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Michel_Temer_%28foto_oficial%29.jpg/220px-Michel_Temer_%28foto_oficial%29.jpg"
-              this.presidente = "Temer"
-            break;
+            });
           }
         },
-
-        showSaldo: function(){
-          var chart_saldo = document.getElementById('saldo_canvas').getContext('2d');
-          var periodo = ['1986-03-01', '1987-03-01', '1905-01', '1987-11-01',
-         '1988-03-01', '1988-04-01', '1988-10-01', '1988-12-01', '1989-03-01', '1989-09-01', '1989-11-01', '1990-01-01', '1990-03-01', '1990-06-01', '1990-09-01', '1991-03-01', '1991-09-01', '1992-03-01', '1992-09-01', '1992-09-02', '1992-12-15', '1993-01-02', '1993-02-03', '1993-03-27', '1993-04-14', '1993-05-26', '1993-06-15', '1993-08-04', '1993-11-10', '1993-12-14', '1994-03-28', '1994-05-02', '1994-08-08', '1994-09-27', '1994-10-19', '1994-12-12', '1995-03-21', '1995-06-20', '1995-09-18', '1995-12-12', '1996-06-24', '1996-09-18', '1996-12-11', '1997-05-05', '1997-06-18', '1997-09-16', '1997-12-15', '1998-03-10', '1998-04-29', '1998-05-27', '1998-06-08', '1998-07-08', '1998-08-12', '1998-09-01', '1998-12-10', '1999-02-03', '1999-06-09', '1999-09-14', '1999-12-13', '2000-05-14', '2000-06-19', '2000-10-09', '2000-12-12', '2001-05-21', '2001-06-25', '2001-09-18', '2001-11-09', '2001-12-12', '2002-02-20', '2002-04-09', '2002-05-12', '2002-05-14', '2002-06-07', '2002-07-04', '2002-08-15', '2002-08-30', '2002-09-09', '2002-09-19', '2002-09-26', '2002-10-11', '2002-10-18', '2002-12-09', '2003-03-31', '2003-06-24', '2003-08-20', '2003-10-28', '2003-12-08', '2004-03-01', '2004-08-17', '2004-12-14', '2005-05-31', '2005-06-16', '2005-07-21', '2005-08-10', '2005-10-20', '2005-12-13', '2006-02-01', '2006-02-20', '2006-04-06', '2006-05-16', '2006-05-23', '2006-06-17', '2006-08-07', '2006-08-21', '2006-08-29', '2006-09-04', '2006-09-11', '2006-09-18', '2006-09-22', '2006-09-27', '2006-10-06', '2006-10-10', '2006-10-16', '2006-10-23', '2006-12-13', '2007-03-19', '2007-08-01', '2007-11-26', '2008-03-25', '2008-09-08', '2008-11-25', '2009-03-16', '2009-05-26', '2009-08-11', '2009-12-14', '2010-02-24', '2010-03-25', '2010-04-15', '2010-05-20', '2010-07-20', '2010-08-09', '2010-08-23', '2010-09-13', '2010-09-21', '2010-10-08', '2010-10-14', '2010-10-21', '2010-10-26', '2010-11-17', '2011-03-15', '2011-06-09', '2011-08-02', '2012-01-18', '2012-04-18', '2012-08-09', '2012-12-13', '2013-03-03', '2013-06-07', '2013-06-28', '2013-08-09', '2013-10-11', '2013-11-28', '2014-02-19', '2014-04-02', '2014-05-07', '2014-06-03', '2014-07-01', '2014-07-15', '2014-08-14', '2014-08-28', '2014-09-01', '2014-09-08', '2014-09-17', '2014-09-25', '2014-09-29', '2014-10-01', '2014-10-08', '2014-10-14', '2014-10-20', '2014-10-21', '2014-12-02', '2015-02-05', '2015-03-16', '2015-04-09', '2015-06-17', '2015-08-04', '2015-11-25', '2015-12-16', '2016-02-24', '2016-03-17', '2016-04-07', '2016-06-15', '2016-12-07', '2017-04-27', '2017-06-21', '2017-09-28', '2017-11-30', '2018-01-29'];
-
-          var saldo_sarney = [ 69,  14, -45, -47, -55, -44, -58, -57, -55, -63, -51, -57, -47];
-          var saldo_collor = [ 67,  17,  14, -11, -23, -33, -59];
-          var saldo_itamar = [ -3,  23,  28,   6,   0, -10,  -7, -10, -19, -29, -16, -22, -22,  24,  19,  30,  33];
-          var saldo_fhc = [ 23,  23,  27,  26,   5,  26,  35,  24,  23,  28,  17, 17,  14,   7,   6,  19,  21,  26,  10, -15, -28, -43, -30, -25, -22, -14, -11,  -4, -23, -14, -12, -11,   2, -1,   1,  -2,   3,   5,  -5,  -6,  -8, -11, -12,  -9, -6, -10];
-          var saldo_lula = [33, 31, 34, 31, 27, 21, 18, 32, 17, 17, 12,  5,  0, -1, 13, 15, 14, 15, 17, 17, 27, 36, 32, 30, 28, 30, 28, 30, 32, 32, 36, 38, 38, 34, 33, 36, 44, 56, 63, 57, 63, 59, 66, 68, 72, 68, 71, 73, 73, 75, 74, 74, 74, 77, 79, 80, 79];
-          var saldo_dilma = [ 40,  39,  37,  53,  59,  55,  55,  58,  48,   5,  14, 19,  24,  20,  11,   9,   5,   9,   3,  15,   9,  12, 12,  13,  15,  16,  16,  17,  19,  22,  22,  18, -21, -49, -47, -55, -63, -57, -53, -53, -59, -50];
-          var saldo_temer = [-28, -41, -52, -62, -68, -66, -64];
-
-          ctxsaldo = new Chart(chart_saldo, {
-            // The type of chart we want to create
-            type: 'line',
-
-            // The data for our dataset
-            data: {
-              xLabels: periodo,
-              yLabels: [-100, -90, -80, -70, -60, -50, -40, -30, -20, -10, 0, 10, 20, 30, 40, 50, 60, 70, 90, 100],
-              datasets: [
-                {
-                  label: "SARNEY",
-                  borderColor: '#FF9933',
-                  data: saldo_sarney
-                },
-                {
-                  label: "COLLOR",
-                  borderColor: '#99004C',
-                  data: [NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(saldo_collor)
-                },
-                {
-                  label: "ITAMAR",
-                  borderColor: '#999900',
-                  data: [NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(saldo_itamar)
-                },
-                {
-                  label: "FHC",
-                  borderColor: '#FF3399',
-                  data: [NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(saldo_fhc)
-                },
-                {
-                  label: "LULA",
-                  borderColor: '#6600CC',
-                  data: [NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(saldo_lula)
-                },
-                {
-                  label: "DILMA",
-                  borderColor: '#FF3333',
-                  data: [ NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(saldo_dilma)
-                },
-                {
-                  label: "TEMER",
-                  borderColor: '#33FFFF',
-                  data: [ NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN,NaN].concat(saldo_temer)
-                }
-              ]
-            },
-
-            // Configuration options go here
-            options: {
-              title: {
-                display: true,
-                text: "SALDO DE GOVERNO"
-              },
-              scales: {
-                yAxes: [{
-                  scaleLabel: {
-                    display: true,
-                    labelString: 'Saldo das Avaliações Governamentais',
-                  },
-                  ticks: {
-                      suggestedMin: -100,   // minimum value will be 0.
-                      suggestedMax: 100
-                  }
-                }],
-                xAxes: [{
-                  scaleLabel: {
-                    display: true,
-                    labelString: 'Período'
-                  }
-                }]
-              },
-              tooltips: {
-                enabled: true,
-                callbacks : { // HERE YOU CUSTOMIZE THE LABELS
-                    title : function() {
-                        return 'Avaliação';
-                    },
-                    label : function(tooltipItem, data) {
-                        return data.datasets[tooltipItem.datasetIndex].label + ': ' + tooltipItem.yLabel + "%";
-                    },
-                    afterLabel: function(tooltipItem, data) {
-                      return "Coletado em: " + periodo[tooltipItem.index];
-                    }
-                }
-
-              },
-            }
-          })
-        }
       },
-      mounted: function(){
-        this.showGeralBomOtimo();
-        this.showIndividual('SARNEY');
-        this.showSaldo();
-      }
-    })
 
+    });
+
+    var ctx_planoDeGoverno_especificos_Bolsonaro = document.getElementById('planoDeGoverno_especificos_Bolsonaro').getContext('2d');
+    var plot_planoDeGoverno_especificos_Bolsonaro = new Chart(ctx_planoDeGoverno_especificos_Bolsonaro, {
+      type: 'bar',
+      data: {
+        labels:['educação', 'saúde', 'segurança', 'cultura', 'emprego', 'previdência', 'idoso', 'mulher', 'lgbti+', 'criança', 'negro', 'acessibilidade', 'democracia', 'infraestrutura'],
+        datasets: [{
+          label: 'Jair Bolsonaro',
+          data: [17, 15,  9,  0,  3,  5,  1,  1,  0,  4,  0,  0,  1,  6],
+          backgroundColor:["rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)"],
+
+          borderColor:["rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)"],
+          borderWidth:1
+        }]
+      },
+      options: {
+        scaleShowValues: true,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              max: 60
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Frequência'
+            },
+          }],
+          xAxes: [{
+            ticks: {
+              autoSkip: false
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Palavras'
+            },
+          }]
+        },
+        hover: {
+          animationDuration: 0
+        },
+        animation: {
+          duration: 1,
+          onComplete: function() {
+            var chartInstance = this.chart,
+            ctx = chartInstance.ctx;
+            ctx.fillStyle = "rgba(0,0,0,1)";
+            console.log(ctx);
+            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
+
+            this.data.datasets.forEach(function(dataset, i) {
+              var meta = chartInstance.controller.getDatasetMeta(i);
+              meta.data.forEach(function(bar, index) {
+                var data = dataset.data[index];
+                ctx.fillText(data, bar._model.x, bar._model.y - 5);
+              });
+            });
+          }
+        },
+      },
+
+    });
+
+
+    //Twitter
+
+    //Twitter - Gerais
+    var ctx_twitter_gerais_Haddad = document.getElementById('twitter_gerais_Haddad').getContext('2d');
+    var plot_twitter_gerais_Haddad = new Chart(ctx_twitter_gerais_Haddad, {
+      type: 'bar',
+      data: {
+        labels:['bolsonaro', 'vamos', '#haddad13', 'vai', 'fernando', 'haddad','adversário', 'pra', 'porque', 'brasil', 'todos', 'povo', 'sobre','deputado', 'ser', 'jair', 'ricardo', 'democracia.', 'democracia','pode'],
+        datasets: [{
+          label: 'Fernando Haddad',
+          data: [86, 83, 71, 62, 55, 51, 46, 43, 42, 42, 37, 36, 36, 31, 29, 28, 26, 26, 26, 26],
+          backgroundColor:["rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)"],
+
+          borderColor:["rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)"],
+          borderWidth:1
+        }]
+      },
+      options: {
+        scaleShowValues: true,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              max: 90
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Frequência'
+            },
+          }],
+          xAxes: [{
+            ticks: {
+              autoSkip: false
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Palavras'
+            },
+          }]
+        },
+        hover: {
+          animationDuration: 0
+        },
+        animation: {
+          duration: 1,
+          onComplete: function() {
+            var chartInstance = this.chart,
+            ctx = chartInstance.ctx;
+            ctx.fillStyle = "rgba(0,0,0,1)";
+            console.log(ctx);
+            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
+
+            this.data.datasets.forEach(function(dataset, i) {
+              var meta = chartInstance.controller.getDatasetMeta(i);
+              meta.data.forEach(function(bar, index) {
+                var data = dataset.data[index];
+                ctx.fillText(data, bar._model.x, bar._model.y - 5);
+              });
+            });
+          }
+        },
+      },
+
+    });
+
+    var ctx_twitter_gerais_Bolsonaro = document.getElementById('twitter_gerais_Bolsonaro').getContext('2d');
+    var plot_twitter_gerais_Bolsonaro = new Chart(ctx_twitter_gerais_Bolsonaro, {
+      type: 'bar',
+      data: {
+        labels:['rt', 'brasil', 'bolsonaro', '👍🏻', 'pt', 'contra', 'todos', 'jair',
+       'ser', 'vamos', 'grande', 'obrigado', 'sobre', 'parte', 'visita',
+       'além', 'the', 'corrupto', '@carlosbolsonaro:', 'forte'],
+        datasets: [{
+          label: 'Jair Bolsonaro',
+          data: [66, 40, 29, 25, 24, 22, 19, 19, 18, 18, 16, 16, 16, 15, 14, 14, 14,13, 13, 13],
+          backgroundColor:["rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)"],
+
+          borderColor:["rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)"],
+          borderWidth:1
+        }]
+      },
+      options: {
+        scaleShowValues: true,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              max: 90
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Frequência'
+            },
+          }],
+          xAxes: [{
+            ticks: {
+              autoSkip: false
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Palavras'
+            },
+          }]
+        },
+        hover: {
+          animationDuration: 0
+        },
+        animation: {
+          duration: 1,
+          onComplete: function() {
+            var chartInstance = this.chart,
+            ctx = chartInstance.ctx;
+            ctx.fillStyle = "rgba(0,0,0,1)";
+            console.log(ctx);
+            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
+
+            this.data.datasets.forEach(function(dataset, i) {
+              var meta = chartInstance.controller.getDatasetMeta(i);
+              meta.data.forEach(function(bar, index) {
+                var data = dataset.data[index];
+                ctx.fillText(data, bar._model.x, bar._model.y - 5);
+              });
+            });
+          }
+        },
+      },
+
+    });
+
+
+    //Twitter - Específicos
+    var ctx_twitter_especificos_Haddad = document.getElementById('twitter_especificos_Haddad').getContext('2d');
+    var plot_twitter_especificos_Haddad = new Chart(ctx_twitter_especificos_Haddad, {
+      type: 'bar',
+      data: {
+        labels:['psl', '@jairbolsonaro', 'educação', 'saúde', 'segurança', 'cultura',
+       'emprego', 'previdência', 'idoso', 'mulher', 'lgbti+', 'criança',
+       'negro', 'acessibilidade', 'democracia', 'infraestrutura'],
+        datasets: [{
+          label: 'Fernando Haddad',
+          data: [ 0,  5, 12,  2, 10,  4,  3,  0,  0,  4,  0, 11,  0,  0, 26,  0],
+          backgroundColor:["rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)"],
+
+          borderColor:["rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)"],
+          borderWidth:1
+        }]
+      },
+      options: {
+        scaleShowValues: true,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              max: 30
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Frequência'
+            },
+          }],
+          xAxes: [{
+            ticks: {
+              autoSkip: false
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Palavras'
+            },
+          }]
+        },
+        hover: {
+          animationDuration: 0
+        },
+        animation: {
+          duration: 1,
+          onComplete: function() {
+            var chartInstance = this.chart,
+            ctx = chartInstance.ctx;
+            ctx.fillStyle = "rgba(0,0,0,1)";
+            console.log(ctx);
+            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
+
+            this.data.datasets.forEach(function(dataset, i) {
+              var meta = chartInstance.controller.getDatasetMeta(i);
+              meta.data.forEach(function(bar, index) {
+                var data = dataset.data[index];
+                ctx.fillText(data, bar._model.x, bar._model.y - 5);
+              });
+            });
+          }
+        },
+      },
+
+    });
+
+    var ctx_twitter_especificos_Bolsonaro = document.getElementById('twitter_especificos_Bolsonaro').getContext('2d');
+    var plot_twitter_especificos_Bolsonaro = new Chart(ctx_twitter_especificos_Bolsonaro, {
+      type: 'bar',
+      data: {
+        labels:['pt', '@haddad_fernando', 'educação', 'saúde', 'segurança', 'cultura',
+       'emprego', 'previdência', 'idoso', 'mulher', 'lgbti+', 'criança',
+       'negro', 'acessibilidade', 'democracia', 'infraestrutura'],
+        datasets: [{
+          label: 'Jair Bolsonaro',
+          data: [24,  0,  3,  5,  5,  0,  1,  0,  0,  2,  0,  1,  0,  0,  7,  2],
+          backgroundColor:["rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)"],
+
+          borderColor:["rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)"],
+          borderWidth:1
+        }]
+      },
+      options: {
+        scaleShowValues: true,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              max: 30
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Frequência'
+            },
+          }],
+          xAxes: [{
+            ticks: {
+              autoSkip: false
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Palavras'
+            },
+          }]
+        },
+        hover: {
+          animationDuration: 0
+        },
+        animation: {
+          duration: 1,
+          onComplete: function() {
+            var chartInstance = this.chart,
+            ctx = chartInstance.ctx;
+            ctx.fillStyle = "rgba(0,0,0,1)";
+            console.log(ctx);
+            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
+
+            this.data.datasets.forEach(function(dataset, i) {
+              var meta = chartInstance.controller.getDatasetMeta(i);
+              meta.data.forEach(function(bar, index) {
+                var data = dataset.data[index];
+                ctx.fillText(data, bar._model.x, bar._model.y - 5);
+              });
+            });
+          }
+        },
+      },
+
+    });
     </script>
 
 
