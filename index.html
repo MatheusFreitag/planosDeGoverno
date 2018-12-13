@@ -114,7 +114,7 @@
         p.nota{
           font-size: 35px;
         }
-      } 
+      }
     </style>
   </head>
   <body>
@@ -138,6 +138,14 @@
         </div>
         <div class="col s12 m12 l6">
           <canvas height="250" id="planoDeGoverno_gerais_Bolsonaro"></canvas>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s12 m12 l12">
+          <p class="nota">
+            Nota: Inicialmente, no plano de Haddad as palavras "políticas" e "política" estavam desagrupadas e apareciam simultaneamente no gráfico. Agora elas são mapeadas para "política", e suas frequências são somadas.
+          </p>
         </div>
       </div>
 
@@ -175,8 +183,19 @@
     <div class="row">
       <div class="col s12 m12 l12">
         <p class="nota">
-          <b>Nota:</b> Alguns termos foram "agrupados", como por exemplo, os termos "negro", "negros", "negra" e "negras" são todos representados como "negro" nesta contagem. Assim como "mulheres" e "mulher" são termos representados  por "mulher", "idosos" e  "idoso" como "idoso", "crianças" e criança" como "criança.
+          <b>Nota:</b> Alguns termos foram "agrupados", como por exemplo, os termos "negro", "negros", "negra" e "negras" são todos representados como "negro" nesta contagem. Assim como "mulheres" e "mulher" são termos representados  por "mulher", "idosos" e  "idoso" como "idoso", "crianças" e "criança" como "criança".
         </p>
+      </div>
+    </div>
+
+    <p class="descricao">É importante salientar que números absolutos não é a única métrica possível. O Plano de Governo de <b>Haddad possui 6334 palavras</b> a serem observadas, enquanto o de <b>Bolsonaro possui 2722</b>. O peso de cada palavra então muda de acordo com o tamanho do documento. Abaixo temos a % do peso que cada um dos termos específicos possui no texto como um todo.</p>
+
+    <div class="row">
+      <div class="col s12 m12 l6">
+        <canvas height='250' id="planoDeGoverno_especificos_relativo_Haddad"></canvas>
+      </div>
+      <div class="col s12 m12 l6">
+        <canvas height='250' id="planoDeGoverno_especificos_relativo_Bolsonaro"></canvas>
       </div>
     </div>
 
@@ -268,10 +287,10 @@
     var plot_planoDeGoverno_gerais_Haddad = new Chart(ctx_planoDeGoverno_gerais_Haddad, {
       type: 'bar',
       data: {
-        labels:['governo','políticas','nacional','política','haddad','desenvolvimento','brasil','direitos','sistema','além','novo','programa','ser','reforma','vai','investimentos','social','educação','transição','bem'],
+        labels:['política', 'governo', 'nacional', 'haddad', 'desenvolvimento','brasil', 'direitos', 'sistema', 'além', 'novo', 'ser', 'programa', 'reforma', 'investimentos', 'vai', 'educação', 'social', 'transição','bem', 'país'],
         datasets: [{
           label: 'Fernando Haddad',
-          data: [215, 126, 125, 109, 103, 96, 86, 82, 78, 75, 74, 63, 63, 61, 54, 54, 52, 52, 51, 50],
+          data: [235, 215, 125, 103,  96,  86,  82,  78,  75,  74,  63,  63,  61, 54,  54,  52,  52,  51,  50,  49],
           backgroundColor:["rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)"],
 
           borderColor:["rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)"],
@@ -284,11 +303,11 @@
           yAxes: [{
             ticks: {
               beginAtZero: true,
-              max: 220
+              max: 240
             },
             scaleLabel: {
               display: true,
-              labelString: 'Frequência'
+              labelString: 'Frequência - Números absolutos'
             },
           }],
           xAxes: [{
@@ -349,11 +368,11 @@
           yAxes: [{
             ticks: {
               beginAtZero: true,
-              max: 220
+              max: 240
             },
             scaleLabel: {
               display: true,
-              labelString: 'Frequência'
+              labelString: 'Frequência - Números absolutos'
             },
           }],
           xAxes: [{
@@ -420,7 +439,7 @@
             },
             scaleLabel: {
               display: true,
-              labelString: 'Frequência'
+              labelString: 'Frequência - Números absolutos'
             },
           }],
           xAxes: [{
@@ -485,7 +504,7 @@
             },
             scaleLabel: {
               display: true,
-              labelString: 'Frequência'
+              labelString: 'Frequência - Números absolutos'
             },
           }],
           xAxes: [{
@@ -526,7 +545,135 @@
 
     });
 
+    var ctx_planoDeGoverno_especificos_relativo_Haddad = document.getElementById('planoDeGoverno_especificos_relativo_Haddad').getContext('2d');
+    var plot_planoDeGoverno_especificos_relativo_Haddad = new Chart(ctx_planoDeGoverno_especificos_relativo_Haddad, {
+      type: 'bar',
+      data: {
+        labels:['educação', 'saúde', 'segurança', 'cultura', 'emprego', 'previdência', 'idoso', 'mulher', 'lgbti+', 'criança', 'negro', 'acessibilidade', 'democracia', 'infraestrutura'],
+        datasets: [{
+          label: 'Fernando Haddad',
+          data: [0.82, 0.46, 0.65, 0.71, 0.27, 0.05, 0.05, 0.33, 0.13, 0.21, 0.22, 0.06, 0.28, 0.51],
+          backgroundColor:["rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)"],
 
+          borderColor:["rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)"],
+          borderWidth:1
+        }]
+      },
+      options: {
+        scaleShowValues: true,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              max: 4
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Frequência %'
+            },
+          }],
+          xAxes: [{
+            ticks: {
+              autoSkip: false
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Palavras'
+            },
+          }]
+        },
+        hover: {
+          animationDuration: 0
+        },
+        animation: {
+          duration: 1,
+          onComplete: function() {
+            var chartInstance = this.chart,
+            ctx = chartInstance.ctx;
+            ctx.fillStyle = "rgba(0,0,0,1)";
+            console.log(ctx);
+            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
+
+            this.data.datasets.forEach(function(dataset, i) {
+              var meta = chartInstance.controller.getDatasetMeta(i);
+              meta.data.forEach(function(bar, index) {
+                var data = dataset.data[index];
+                ctx.fillText(data, bar._model.x, bar._model.y - 5);
+              });
+            });
+          }
+        },
+      },
+
+    });
+
+    var ctx_planoDeGoverno_especificos_relativo_Bolsonaro = document.getElementById('planoDeGoverno_especificos_relativo_Bolsonaro').getContext('2d');
+    var plot_planoDeGoverno_especificos_relativo_Bolsonaro = new Chart(ctx_planoDeGoverno_especificos_relativo_Bolsonaro, {
+      type: 'bar',
+      data: {
+        labels:['educação', 'saúde', 'segurança', 'cultura', 'emprego', 'previdência', 'idoso', 'mulher', 'lgbti+', 'criança', 'negro', 'acessibilidade', 'democracia', 'infraestrutura'],
+        datasets: [{
+          label: 'Jair Bolsonaro',
+          data: [0.62, 0.55, 0.33, 0.  , 0.11, 0.18, 0.04, 0.04, 0.  , 0.15, 0., 0.  , 0.04, 0.22],
+          backgroundColor:["rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)"],
+
+          borderColor:["rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)"],
+          borderWidth:1
+        }]
+      },
+      options: {
+        scaleShowValues: true,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              max: 4
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Frequência %'
+            },
+          }],
+          xAxes: [{
+            ticks: {
+              autoSkip: false
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Palavras'
+            },
+          }]
+        },
+        hover: {
+          animationDuration: 0
+        },
+        animation: {
+          duration: 1,
+          onComplete: function() {
+            var chartInstance = this.chart,
+            ctx = chartInstance.ctx;
+            ctx.fillStyle = "rgba(0,0,0,1)";
+            console.log(ctx);
+            ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'bottom';
+
+            this.data.datasets.forEach(function(dataset, i) {
+              var meta = chartInstance.controller.getDatasetMeta(i);
+              meta.data.forEach(function(bar, index) {
+                var data = dataset.data[index];
+                ctx.fillText(data, bar._model.x, bar._model.y - 5);
+              });
+            });
+          }
+        },
+      },
+
+    });
     //Twitter
 
     //Twitter - Gerais
@@ -554,7 +701,7 @@
             },
             scaleLabel: {
               display: true,
-              labelString: 'Frequência'
+              labelString: 'Frequência - Números absolutos'
             },
           }],
           xAxes: [{
@@ -621,7 +768,7 @@
             },
             scaleLabel: {
               display: true,
-              labelString: 'Frequência'
+              labelString: 'Frequência - Números absolutos'
             },
           }],
           xAxes: [{
@@ -690,7 +837,7 @@
             },
             scaleLabel: {
               display: true,
-              labelString: 'Frequência'
+              labelString: 'Frequência - Números absolutos'
             },
           }],
           xAxes: [{
@@ -757,7 +904,7 @@
             },
             scaleLabel: {
               display: true,
-              labelString: 'Frequência'
+              labelString: 'Frequência - Números absolutos'
             },
           }],
           xAxes: [{
