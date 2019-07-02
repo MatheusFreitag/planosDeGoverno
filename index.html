@@ -16,7 +16,8 @@
     <meta name="twitter:image" content="https://i.imgur.com/n52aMMK.png" />
     <meta name="twitter:image:alt" content="Frequência das palavras usadas nos Planos de Governo dos candidatos ao segundo turno das eleições presidenciais do Brasil em 2018" />
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link rel="stylesheet" href="materialize.min.css">
+    <link rel="stylesheet" href="Chart.min.css">
     <style>
 
       body{
@@ -122,7 +123,15 @@
 
     <div id="geral" class="container">
 
-      <h1 class="titulo">Frequência de Palavras - Eleições Presidenciais 2018</h1>
+        <div class="row">
+          <p style="text-align: center;">
+            <label> <input v-on:click="changeLanguage('PT')" class="with-gap" name="individual" type="radio" checked /><span>🇧🇷 PT-BR</span></label>
+            <label> <input v-on:click="changeLanguage('EN')" class="with-gap" name="individual" type="radio" /> <span>🇺🇸 EN-US</span> </label>
+          </p>
+        </div>
+
+      <h1 class="titulo" v-if="language == 'PT'">{{title_PT}}</h1>
+      <h1 class="titulo" v-else>{{title_EN}}</h1>
       <p class="descricao">Com foco no 2º turno das Eleições de 2018, aqui é apresentada a frequência das palavras mais utilizadas nos planos de governo de Fernando Haddad (PT-13) e Jair Bolsonaro (PSL-17), bem como os termos mais utizados nos tweets pessoais de cada candidato.</p>
       <hr>
 
@@ -278,11 +287,26 @@
 
 
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script src="Chart.min.js"></script>
+    <script src="materialize.min.js"></script>
+    <script src="vue.min.js"></script>
 
 
     <script type="text/javascript">
+    var app = new Vue({
+      el: '#geral',
+      data: {
+        language: 'PT',
+        title_PT: 'Frequência de Palavras - Eleições Presidenciais 2018',
+        title_EN:  'Word Frequency - Presidential Elections 2018',
+      },
+      methods: {
+        changeLanguage: function(language){
+          this.language = language
+        }
+      }
+    });
+
     var ctx_planoDeGoverno_gerais_Haddad = document.getElementById('planoDeGoverno_gerais_Haddad').getContext('2d');
     var plot_planoDeGoverno_gerais_Haddad = new Chart(ctx_planoDeGoverno_gerais_Haddad, {
       type: 'bar',
@@ -295,7 +319,7 @@
 
           borderColor:["rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)","rgb(255, 205, 86)","rgb(75, 192, 192)","rgb(54, 162, 235)","rgb(153, 102, 255)","rgb(201, 203, 207)","rgb(255, 99, 132)","rgb(255, 159, 64)"],
           borderWidth:1
-        }]
+        }],
       },
       options: {
         scaleShowValues: true,
